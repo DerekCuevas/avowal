@@ -50,7 +50,7 @@ $(function () {
                     callback(available, available ? 'Username available.' : 'Sorry, username taken.');
                 });
             }, function (username, callback) {
-                if (is_empty(username) || is_empty(username.substr(1))) {
+                if (is_empty(username) || username === '@') {
                     callback(false, 'Username required.');
                     return true;
                 }
