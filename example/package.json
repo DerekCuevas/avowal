@@ -1,0 +1,16 @@
+{
+  "name": "signup",
+  "version": "0.0.0",
+  "description": "An example of the form validator",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js && open http://localhost:3000"
+  },
+  "author": "Derek Cuevas",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1"
+  }
+}

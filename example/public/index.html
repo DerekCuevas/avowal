@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>signup.js</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body>
+    <form name="signup" method="post" action="/signup">
+        <h3>Create An Account</h3>
+        <ul>
+            <li>
+                <input type="text" name="name" placeholder="Full Name">
+                <div class="status-message"></div>
+            </li>
+            <li>
+                <input type="text" name="username" placeholder="@Username">
+                <div class="status-message"></div>
+            </li>
+            <li>
+                <input type="password" name="password_one" placeholder="Password">
+                <div class="status-message"></div>
+            </li>
+            <li>
+                <input type="password" name="password_two" placeholder="Confirm Password">
+                <div class="status-message"></div>
+            </li>
+            <li>
+                <button type="submit">
+                    Send <i class="fa fa-paper-plane-o"></i>
+                </button>
+            </li>
+        </ul>
+        <div class="status"></div>
+    </form>
+
+    <!-- client side templates for the validator -->
+    <template class="success">
+        <div class="success"><i class="fa fa-check"></i> {{status}}</div>
+    </template>
+
+    <template class="error">
+        <div class="error"><i class="fa fa-exclamation"></i> {{status}}</div>
+    </template>
+
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/signup.js"></script>
+</body>
+</html>
