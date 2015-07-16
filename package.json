@@ -1,0 +1,22 @@
+{
+  "name": "validation.js",
+  "version": "1.0.0",
+  "description": "async js form validation",
+  "main": "validation.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DerekCuevas/validation.js.git"
+  },
+  "author": "Derek Cuevas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DerekCuevas/validation.js/issues"
+  },
+  "homepage": "https://github.com/DerekCuevas/validation.js#readme"
+}
