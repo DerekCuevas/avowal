@@ -16,19 +16,19 @@ $(function () {
         });
     }
 
-    function make_timedout_validator(delay, validator, except) {
-        var timeout;
-
+    function make_delay_fn_except(delay, fn, except) {
+        var watch;
+     
         return function () {
             var args = Array.prototype.slice.call(arguments);
-            clearTimeout(timeout);
-
-            if (except && except.apply(this, args)) {
+            clearTimeout(watch);
+     
+            if (except && except.apply(null, args)) {
                 return;
             }
-
-            timeout = setTimeout(function () {
-                validator.apply(this, args);
+     
+            watch = setTimeout(function () {
+                fn.apply(null, args);
             }, delay);
         };
     }
@@ -45,7 +45,7 @@ $(function () {
             }
         },
         username: {
-            validator: make_timedout_validator(200, function (username, callback) {
+            validator: make_delay_fn_except(200, function (username, callback) {
                 $.get('/available', {username: username}, function (available) {
                     callback(available, available ? 'Username available.' : 'Sorry, username taken.');
                 });
@@ -56,10 +56,10 @@ $(function () {
                 }
             }),
             transform: function (username) {
-                if (username.indexOf('@') !== -1) {
-                    return username;
+                if (username.indexOf('@') !== 0) {
+                    return '@' + username;
                 }
-                return '@' + username;
+                return username;
             }
         },
         password_one: {
