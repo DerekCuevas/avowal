@@ -6,6 +6,12 @@ Work in Progress.
 ## Setup
 Clone or 'npm install' this repository.
 
+```sh
+git clone https://github.com/DerekCuevas/Validation.git
+or
+npm install --save git+https://github.com/DerekCuevas/Validation.git
+```
+
 Require with commonJS (Node) or include directly via a script tag
 
 ```javascript
