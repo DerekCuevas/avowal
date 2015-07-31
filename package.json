@@ -1,5 +1,5 @@
 {
-  "name": "validation.js",
+  "name": "Validation",
   "version": "1.0.0",
   "description": "async js form validation",
   "main": "validation.js",

@@ -17,7 +17,7 @@ or
 <script src="Validation.js"></script>
 ```
 
-#### creating a form validation instance
+#### Creating a form validation instance
 
 ```javascript
 var signup = new Validation({
@@ -35,5 +35,3 @@ var signup = new Validation({
     }
 });
 ```
-
-
