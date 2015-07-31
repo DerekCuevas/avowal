@@ -1,3 +1,4 @@
-# validation.js
+# Validation
 
-async js form validation
+Super lightweight zero dependency asynchronous JavaScript form validation.
+Work in Progress.

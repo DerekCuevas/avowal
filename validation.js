@@ -10,14 +10,13 @@
  *
  * - call lifeCycles (init) after reset
  * - find_or_add_status();
+ * - better template support
  */
 
 (function () {
     'use strict';
 
-    var root = typeof self === 'object' && self.self === self && self ||
-        typeof global === 'object' && global.global === global && global ||
-        this;
+    var root = this;
 
     var forEvery = function (obj, fn) {
         Object.keys(obj).forEach(function (key) {
@@ -40,12 +39,8 @@
     };
 
     var render = function (template, obj) {
-        return template.replace(/\{\{(.+?)\}\}/g, function (placeholder, property) {
-            var value = obj[property];
-            if (value !== undefined && typeof value !== 'number') {
-                return value.replace(/(<([^>]+)>)/ig, '');
-            }
-            return value;
+        return template.replace(/\{\{(.+?)\}\}/g, function (_, prop) {
+            return obj[prop];
         });
     };
 
@@ -76,7 +71,6 @@
         this.lifeCycle = {};
 
         this.listeners = [];
-        this.valid = false;
 
         this.on = on;
 
@@ -216,4 +210,4 @@
         root.Validation = Validation;
     }
 
-}());
+}).call(this);
