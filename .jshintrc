@@ -90,8 +90,6 @@
     // Custom Globals
     "globals"       : {
         "self": true,
-        "define": true,
-        "$": true,
-        "validation": true
+        "define": true
     }
 }

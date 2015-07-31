@@ -15,9 +15,12 @@ html, body {
 }
 
 h3 {
-    margin: 1px 2px 15px 2px;
-    border-bottom: 1px solid rgb(170, 170, 170);
+    padding-bottom: 5px;
+    margin: 1px 2px 10px 2px;
+    border-bottom: 1px solid rgb(210, 210, 210);
     color: rgb(66, 70, 71);
+    font-weight: normal;
+    font-size: 110%;
 }
 
 form {
@@ -25,7 +28,7 @@ form {
     margin: 10px auto;
     max-width: 300px;
     background: rgba(236, 240, 241, 1.0);
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
 form ul {
@@ -93,6 +96,6 @@ div.error {
 
 .status {
     font-size: 80%;
-    margin: 0px 3px;
+    margin: 0px 3px 2px 3px;
     color: rgb(26, 188, 156);
 }

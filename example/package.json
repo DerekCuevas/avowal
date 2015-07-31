@@ -5,12 +5,20 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "build-js": "browserify signup.js | uglifyjs -mc > public/js/bundle.js",
+    "watch-js": "watchify signup.js -o public/js/bundle.js -dv",
+    "start": "npm run build-js && node server.js"
   },
   "author": "Derek Cuevas",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.13.2",
-    "express": "^4.13.1"
+    "express": "^4.13.1",
+    "jquery": "^2.1.4"
+  },
+  "devDependencies": {
+    "browserify": "^11.0.1",
+    "uglifyjs": "^2.4.10",
+    "watchify": "^3.3.1"
   }
 }
