@@ -10,6 +10,7 @@
  *
  * - call lifeCycles (init) after reset
  * - find_or_add_status();
+ * - better status-message support / cache ref
  * - better template support
  */
 
@@ -159,7 +160,7 @@
     Validation.prototype.isValid = function () {
         var allValid = true;
 
-        forEvery(this.state, function (name, valid) {
+        forEvery(this.state, function (_, valid) {
             if (!valid) {
                 allValid = false;
             }
@@ -171,7 +172,7 @@
         var allValid = true;
         var cb = callback || function () {};
 
-        asyncForEvery(this.state, function (name, state, done) {
+        asyncForEvery(this.state, function (name, _, done) {
             var input = this.cache[name];
             var validator = this.lifeCycle[name].validator;
 

@@ -9,15 +9,15 @@ Clone or 'npm install' this repository.
 ```sh
 git clone https://github.com/DerekCuevas/Validation.git
 or
-npm install --save git+https://github.com/DerekCuevas/Validation.git
+npm install git+https://github.com/DerekCuevas/Validation.git
 ```
 
-Require with commonJS (Node) or include directly via a script tag
+Require with commonJS (Node / browserify)
 
 ```javascript
 var Validation = require('Validation');
 ```
-or
+or include directly via a script tag
 
 ```html
 <script src="Validation.js"></script>
