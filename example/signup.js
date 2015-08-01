@@ -54,7 +54,7 @@ function set_maximum_frequency(freq, fn, except) {
  */
 var signup = new Validation({
     name: 'signup',
-    on: 'change',
+    on: 'input',
     templates: {
         success: 'template.success',
         error: 'template.error'
