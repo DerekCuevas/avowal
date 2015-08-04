@@ -5,6 +5,8 @@
 
 /**
  * TODOs:
+ * - rename validator to validate
+ * 
  * - add getState / setState methods
  * - add getValues method
  *
