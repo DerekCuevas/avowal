@@ -5,8 +5,6 @@
 
 /**
  * TODOs:
- * - rename validator to validate
- * 
  * - add getState / setState methods
  * - add getValues method
  *
@@ -117,7 +115,7 @@
         input.addEventListener(on, function () {
             this.notifyChange();
 
-            lifeCycle.validator(input.value, function (valid, message) {
+            lifeCycle.validate(input.value, function (valid, message) {
                 this.state[name] = valid;
                 this._showStatus(name, valid, message);
 
@@ -176,9 +174,9 @@
 
         asyncForEvery(this.state, function (name, _, done) {
             var input = this.cache[name];
-            var validator = this.lifeCycle[name].validator;
+            var validate = this.lifeCycle[name].validate;
 
-            validator(input.value, function (valid, message) {
+            validate(input.value, function (valid, message) {
                 this.state[name] = valid;
 
                 if (!valid) {

@@ -18,21 +18,21 @@ var $user = $signup.find('[name=username]');
 /**
  * define some functions
  */
-function is_empty(value) {
+function isEmpty(value) {
     return value.trim().length === 0;
 }
 
-function valid_pass(password) {
+function validPass(password) {
     return /^\w{4,20}$/i.test(password);
 }
 
-function title_case(name) {
+function titleCase(name) {
     return name.replace(/\w\S*/g, function (str) {
         return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
     });
 }
 
-function set_maximum_frequency(freq, fn, except) {
+function debounce(freq, fn, except) {
     var watch;
  
     return function () {
@@ -61,38 +61,34 @@ var signup = new Validation({
     }
 });
 
-signup.addListener(function (state) {
-    console.log(state);
-});
-
 signup.delegate({
     name: {
         init: function (input) {
             input.focus();
         },
-        validator: function (name, callback) {
-            var valid = !is_empty(name);
+        validate: function (name, callback) {
+            var valid = !isEmpty(name);
             var message = valid ? 'Full name ok.' : 'Full name required.';
             callback(valid, message);
         },
         transform: function (name) {
 
             //probably not the best idea, but just to show you can
-            return title_case(name);
+            return titleCase(name);
         }
     },
     username: {
         init: function (input) {
             console.log('Init username:', input);
         },
-        validator: set_maximum_frequency(200, function (username, callback) {
+        validate: debounce(200, function (username, callback) {
             $.get('/available', {username: username}, function (available) {
                 callback(available, available ? 
                     'Username available.' : 
                     'Sorry, username taken.');
             });
         }, function (username, callback) {
-            if (is_empty(username) || username === '@') {
+            if (isEmpty(username) || username === '@') {
                 callback(false, 'Username required.');
                 return true;
             }
@@ -111,19 +107,19 @@ signup.delegate({
         }
     },
     password_one: {
-        validator: function (password, callback) {
-            var valid = valid_pass(password);
+        validate: function (password, callback) {
+            var valid = validPass(password);
             callback(valid, valid ? 'Password ok.' : 'Password invalid.');
         }
     },
     password_two: {
-        validator: (function () {
+        validate: (function () {
             var $password_one = $signup.find('[name=password_one]');
 
             return function (password, callback) {
                 var password_one = $password_one.val();
 
-                if (!valid_pass(password)) {
+                if (!validPass(password)) {
                     callback(false, 'Password invalid.');
                 } else if (password_one !== password) {
                     callback(false, 'Password mismatch.');
@@ -135,7 +131,7 @@ signup.delegate({
     }
 });
 
-function send_form() {
+function send() {
     $.post('/signup', $signup.serialize(), function () {
         var user = $user.val();
         var icon = '<i class="fa fa-smile-o"></i> ';
@@ -159,7 +155,7 @@ $signup.on('submit', function (e) {
 
     signup.validateAll(function (valid) {
         if (valid) {
-            send_form();
+            send();
         }
     });
 });
