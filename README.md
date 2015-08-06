@@ -46,7 +46,7 @@ var signup = new Validation({
 Each input can specify a life cycle object, the bare minimum life cycle object will include the validate method only.
 
 ```javascript
-signupt.delegate({
+signup.delegate({
     name: {/* life cycle object for 'name' input */},
     username: {/* life cycle object for 'username' input */},
     ...
