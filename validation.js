@@ -137,14 +137,20 @@
             this.lifeCycle[name] = lifeCycle;
 
             input.setAttribute('autocomplete', 'off');
-            
+
             this._initLifeCycle(name, this.on);
         }.bind(this));
     };
 
     Validation.prototype.reset = function () {
         forEvery(this.state, function (name) {
+            var init = this.lifeCycle[name].init;
+
             this.resetInput(name);
+
+            if (init) {
+                init(this.cache[name]);
+            }
         }.bind(this));
     };
 

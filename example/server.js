@@ -41,6 +41,6 @@ app.post('/signup', function (req, res) {
 });
 
 app.listen(app.get('port'), function () {
-    console.log('app in %s at http://localhost:%s', 
+    console.log('app in %s at http://localhost:%s',
         app.get('env'), app.get('port'));
 });

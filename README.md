@@ -1,7 +1,7 @@
 # Validation
 
 Super lightweight zero dependency asynchronous JavaScript form validation.
-Work in Progress.
+Work in Progress (see TODOs).
 
 ## Setup
 Clone or 'npm install' this repository.
@@ -60,7 +60,7 @@ email: {
 
     // The only required life cycle method, 'validate' accepts two parameters,
     // the current value of the input and a callback function.
-    // The callback accepts two required values, a boolean (valid / invalid) and 
+    // The callback accepts two required values, a boolean (valid / invalid) and
     // a message to be rendered in one of your templates under the input.
     // Must return the state of the value with the callback as show below.
     validate: function (val, cb) {
@@ -91,3 +91,12 @@ username: {
     transform: function (val) {...}
 }
 ```
+
+## TODOs
+
+- add getState / setState methods
+- add getValues method
+- call lifeCycles (init) after reset
+- find_or_add_status();
+- better status-message support / cache ref
+- better template support

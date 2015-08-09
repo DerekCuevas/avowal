@@ -34,15 +34,12 @@ function titleCase(name) {
 
 function debounce(freq, fn, except) {
     var watch;
- 
     return function () {
         var args = Array.prototype.slice.call(arguments);
         clearTimeout(watch);
- 
         if (except && except.apply(null, args)) {
             return;
         }
- 
         watch = setTimeout(function () {
             fn.apply(null, args);
         }, freq);
@@ -83,8 +80,8 @@ signup.delegate({
         },
         validate: debounce(200, function (username, callback) {
             $.get('/available', {username: username}, function (available) {
-                callback(available, available ? 
-                    'Username available.' : 
+                callback(available, available ?
+                    'Username available.' :
                     'Sorry, username taken.');
             });
         }, function (username, callback) {
