@@ -6,7 +6,7 @@
 'use strict';
 
 var $ = require('jquery');
-var Validation = require('../Validation.js');
+var Validation = require('../../Validation.js');
 
 /**
  * cache some DOM nodes

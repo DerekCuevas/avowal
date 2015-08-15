@@ -5,13 +5,13 @@
 
 /**
  * TODOs:
+ * - better status-message support / cache ref (re-work this)
+ * - better template support
+ * 
  * - add getState / setState methods
  * - add getValues method
  *
- * - call lifeCycles (init) after reset
  * - find_or_add_status();
- * - better status-message support / cache ref
- * - better template support
  */
 
 (function () {
@@ -19,18 +19,18 @@
 
     var root = this;
 
-    var forEvery = function (obj, fn) {
+    var forEvery = function (obj, fun) {
         Object.keys(obj).forEach(function (key) {
-            fn(key, obj[key]);
+            fun(key, obj[key]);
         });
     };
 
-    var asyncForEvery = function (obj, fn, done) {
+    var asyncForEvery = function (obj, fun, done) {
         var keys = Object.keys(obj);
         var count = 0;
 
         keys.forEach(function (key) {
-            fn(key, obj[key], function () {
+            fun(key, obj[key], function () {
                 count += 1;
                 if (count === keys.length) {
                     done();
@@ -46,7 +46,7 @@
     };
 
     var fail = function (thing) {
-        throw new Error(thing);
+        throw new Error("Validation Error: " + thing);
     };
 
     function Validation(options, spec) {
@@ -54,13 +54,13 @@
         options.templates = options.templates || {};
 
         if (!options.name) {
-            fail('Error, form name needed.');
+            fail('Form name needed.');
         }
 
         this.form = document.querySelector('form[name=' + options.name + ']');
 
         if (!this.form) {
-            fail('Error, form not found, ' + options.name);
+            fail('Form "' + options.name + '" not found.');
         }
 
         var on = options.on || 'input';
@@ -132,6 +132,10 @@
         forEvery(spec, function (name, lifeCycle) {
             var input = this.form.querySelector('[name=' + name + ']');
 
+            if (!input) {
+                fail('Input "' + name + '" not found.');
+            }
+
             this.cache[name] = input;
             this.state[name] = false;
             this.lifeCycle[name] = lifeCycle;
@@ -142,11 +146,15 @@
         }.bind(this));
     };
 
-    Validation.prototype.reset = function () {
+    Validation.prototype.reset = function (clear) {
         forEvery(this.state, function (name) {
             var init = this.lifeCycle[name].init;
 
             this.resetInput(name);
+
+            if (clear) {
+                this.cache[name].value = "";
+            }
 
             if (init) {
                 init(this.cache[name]);
@@ -206,6 +214,14 @@
         this.listeners.forEach(function (listener) {
             listener(this.state);
         }.bind(this));
+    };
+
+    Validation.prototype.onSubmit = function (fun) {
+        return this.form.addEventListener('submit', fun);
+    };
+
+    Validation.prototype.onReset = function (fun) {
+        return this.form.addEventListener('reset', fun);
     };
 
     // Node.js (CommonJS)

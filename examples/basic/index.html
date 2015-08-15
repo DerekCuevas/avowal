@@ -1,42 +1,26 @@
 <!doctype html>
 <html>
 <head>
-
-    <title>signup.js</title>
-
+    <title>Basic Validation Example</title>
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <link rel="stylesheet" 
         href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
 </head>
 <body>
-
-    <form name="signup" method="post" action="/signup">
+    <form name="basic">
         <h3>
             <i class="fa fa-bomb"></i>
-            User Signup
+            Email
         </h3>
-        <div class="status"></div>
-
         <ul>
             <li>
-                <input type="text" name="name" 
-                    placeholder="Full Name">
+                <input type="email" name="email" 
+                    placeholder="Email address">
                 <div class="status-message"></div>
             </li>
             <li>
-                <input type="text" name="username" 
-                    placeholder="@Username">
-                <div class="status-message"></div>
-            </li>
-            <li>
-                <input type="password" name="password_one" 
+                <input type="password" name="password" 
                     placeholder="Password">
-                <div class="status-message"></div>
-            </li>
-            <li>
-                <input type="password" name="password_two" 
-                    placeholder="Confirm Password">
                 <div class="status-message"></div>
             </li>
             <li>
@@ -66,7 +50,7 @@
         </div>
     </template>
 
-    <script src="js/bundle.js"></script>
-
+    <script src="../../Validation.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

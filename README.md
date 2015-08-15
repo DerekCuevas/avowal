@@ -96,7 +96,5 @@ username: {
 
 - add getState / setState methods
 - add getValues method
-- call lifeCycles (init) after reset
-- find_or_add_status();
 - better status-message support / cache ref
 - better template support
