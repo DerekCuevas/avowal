@@ -45,23 +45,23 @@ input {
     height: 33px;
     font-size: 80%;
     outline: none;
-    border: 1px solid rgb(149, 165, 166);
+    border: 2px solid rgb(189, 195, 199);
     border-radius: 3px;
     padding-left: 5px;
 }
 
 input:focus {
-    box-shadow: 0 0 2px rgb(149, 165, 166);
-    border: 1px solid rgb(149, 165, 166);
+    box-shadow: 0 0 5px rgb(149, 165, 166);
+    border: 2px solid rgb(149, 165, 166);
 }
 
 input.success {
-    box-shadow: 0 0 2px rgb(26, 188, 156);
+    box-shadow: 0 0 4px rgb(26, 188, 156);
     border: 1px solid rgb(26, 188, 156);
 }
 
 input.error {
-    box-shadow: 0 0 2px rgb(52, 73, 94);
+    box-shadow: 0 0 4px rgb(52, 73, 94);
     border: 1px solid rgb(52, 73, 94);
 }
 
