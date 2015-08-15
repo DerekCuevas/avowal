@@ -2,9 +2,9 @@
   "name": "Validation",
   "version": "1.0.0",
   "description": "async js form validation",
-  "main": "validation.js",
+  "main": "Validation.js",
   "directories": {
-    "example": "example"
+    "examples": "examples"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
