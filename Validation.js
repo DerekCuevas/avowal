@@ -11,7 +11,7 @@
  * - add getState / setState methods
  * - add getValues method
  *
- * - find_or_add_status();
+ * - add on method with 'change', 'submit', 'reset'
  */
 
 (function () {
