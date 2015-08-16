@@ -13,8 +13,8 @@
 
     basic.delegate({
         email: {
-            init: function (email) {
-                email.focus();
+            init: function (input) {
+                input.focus();
             },
             validate: function (email, callback) {
                 var valid = email.trim().length !== 0;

@@ -8,16 +8,10 @@
 var $ = require('jquery');
 var Validation = require('../../Validation.js');
 
-/**
- * cache some DOM nodes
- */
 var $signup = $('form[name=signup]');
 var $status = $('.status');
 var $user = $signup.find('[name=username]');
 
-/**
- * define some functions
- */
 function isEmpty(value) {
     return value.trim().length === 0;
 }
@@ -37,6 +31,7 @@ function debounce(freq, fn, except) {
     return function () {
         var args = Array.prototype.slice.call(arguments);
         clearTimeout(watch);
+
         if (except && except.apply(null, args)) {
             return;
         }
@@ -46,9 +41,7 @@ function debounce(freq, fn, except) {
     };
 }
 
-/**
- * create a new form validator instance for the signup form
- */
+// create a new form validator instance for the signup form
 var signup = new Validation({
     name: 'signup',
     on: 'input',
@@ -143,9 +136,7 @@ function send() {
     });
 }
 
-/**
- * add a submit handler
- */
+// add a submit handler
 signup.on('submit', function (e) {
     e.preventDefault();
 
