@@ -220,6 +220,14 @@
         }
     };
 
+    Validation.prototype.values = function () {
+        var vals = {};
+        forEvery(this.cache, function (name, ref) {
+            vals[name] = ref.value;
+        });
+        return vals;
+    };
+
     // Node.js (CommonJS)
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = Validation;

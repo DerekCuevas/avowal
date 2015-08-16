@@ -1,28 +1,38 @@
 <!doctype html>
 <html>
 <head>
-    <title>Basic Validation Example</title>
+    <title>Particle</title>
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <link rel="stylesheet" 
         href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
     <form name="basic">
-        <h3>Basic</h3>
+        <h3>Create Particle</h3>
         <ul>
             <li>
-                <input type="email" name="email" 
-                    placeholder="Email address">
+                <input type="text" name="color" 
+                    placeholder="Enter Hex Color ( ex. #0ff )">
                 <div class="status-message"></div>
             </li>
             <li>
-                <input type="password" name="password" 
-                    placeholder="Password">
+                <input type="number" name="radius" 
+                    placeholder="Radius">
+                <div class="status-message"></div>
+            </li>
+            <li>
+                <input type="number" name="x" 
+                    placeholder="x position">
+                <div class="status-message"></div>
+            </li>
+            <li>
+                <input type="number" name="y" 
+                    placeholder="y position">
                 <div class="status-message"></div>
             </li>
             <li>
                 <button type="submit">
-                    Send <i class="fa fa-paper-plane-o"></i>
+                    Draw <i class="fa fa-paper-plane-o"></i>
                 </button>
 
                 <button type="reset">
@@ -31,6 +41,8 @@
             </li>
         </ul>
     </form>
+
+    <div id="particles"></div>
 
     <!-- client side templates for the validator -->
     <template class="success">
@@ -48,6 +60,6 @@
     </template>
 
     <script src="../../Validation.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/particle.js"></script>
 </body>
 </html>
