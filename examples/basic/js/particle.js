@@ -1,3 +1,10 @@
+/**
+ * Basic Aysnc form validation example.
+ * Particle Editor.
+ *
+ * @author Derek Cuevas
+ */
+
 (function () {
     'use strict';
 
@@ -80,8 +87,8 @@
         newParticle.style.width = pixelize(p.radius * 2);
         newParticle.style.height = pixelize(p.radius * 2);
 
-        newParticle.style.top = pixelize(p.y);
         newParticle.style.left = pixelize(p.x);
+        newParticle.style.top = pixelize(p.y);
         newParticle.style.background = p.color;
 
         particles.appendChild(newParticle);

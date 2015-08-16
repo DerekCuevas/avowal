@@ -1,7 +1,9 @@
 /**
- * aysnc form validation example
- * a basic signup form, the validation includes a GET to the server,
- * to check if the username entered is available
+ * Advanced Aysnc form validation example.
+ * A sign up form, the validation includes a GET to the server,
+ * to check if the username entered is available.
+ *
+ * @author Derek Cuevas
  */
 'use strict';
 
