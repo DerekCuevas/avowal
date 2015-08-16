@@ -137,17 +137,16 @@ function send() {
             .hide()
             .html(icon + 'Thank you for signing up, ' + user + '.')
             .fadeIn()
-            .fadeOut(5000);
+            .fadeOut(4000);
 
-        signup.reset();
-        $signup[0].reset();
+        signup.reset(true);
     });
 }
 
 /**
  * add a submit handler
  */
-$signup.on('submit', function (e) {
+signup.on('submit', function (e) {
     e.preventDefault();
 
     signup.validateAll(function (valid) {
@@ -157,6 +156,6 @@ $signup.on('submit', function (e) {
     });
 });
 
-$signup.on('reset', function () {
+signup.on('reset', function () {
     signup.reset();
 });

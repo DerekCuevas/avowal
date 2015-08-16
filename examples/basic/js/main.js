@@ -1,4 +1,6 @@
 (function () {
+    'use strict';
+
     // TODO: address
     var basic = new Validation({
         name: 'basic',
@@ -14,22 +16,26 @@
             init: function (email) {
                 email.focus();
             },
-            validate: function (email, cb) {
+            validate: function (email, callback) {
                 var valid = email.trim().length !== 0;
                 var msg = valid ? 'Email looks good.' : 'Your email is required.';
-                cb(valid, msg);
+                callback(valid, msg);
             }
         },
         password: {
-            validate: function (password, cb) {
+            validate: function (password, callback) {
                 var valid = password.trim().length !== 0;
                 var msg = valid ? 'Password looks good.' : 'Your password is required.';
-                cb(valid, msg);
+                callback(valid, msg);
             }
         }
     });
 
-    basic.onSubmit(function (e) {
+    basic.on('change', function (state) {
+        console.log(state);
+    });
+
+    basic.on('submit', function (e) {
         e.preventDefault();
 
         basic.validateAll(function (valid) {
@@ -40,7 +46,7 @@
         });
     });
 
-    basic.onReset(function () {
-        basic.reset(true);
+    basic.on('reset', function () {
+        basic.reset();
     });
 }());

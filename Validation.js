@@ -5,13 +5,13 @@
 
 /**
  * TODOs:
+ * - documentation work
+ * 
  * - better status-message support / cache ref (re-work this)
  * - better template support
  * 
  * - add getState / setState methods
  * - add getValues method
- *
- * - add on method with 'change', 'submit', 'reset'
  */
 
 (function () {
@@ -63,7 +63,6 @@
             fail('Form "' + options.name + '" not found.');
         }
 
-        var on = options.on || 'input';
         var templateSuccess = options.templates.success || 'template.success';
         var templateError = options.templates.error || 'template.error';
 
@@ -73,7 +72,7 @@
 
         this.listeners = [];
 
-        this.on = on;
+        this.validateOn = options.on || 'input';
 
         this.templates = {
             success: document.querySelector(templateSuccess).innerHTML,
@@ -82,7 +81,7 @@
         };
 
         if (spec) {
-            this.delegate(on, spec);
+            this.delegate(spec);
         }
     }
 
@@ -142,7 +141,7 @@
 
             input.setAttribute('autocomplete', 'off');
 
-            this._initLifeCycle(name, this.on);
+            this._initLifeCycle(name, this.validateOn);
         }.bind(this));
     };
 
@@ -160,6 +159,7 @@
                 init(this.cache[name]);
             }
         }.bind(this));
+        this.notifyChange();
     };
 
     Validation.prototype.resetInput = function (name) {
@@ -206,22 +206,18 @@
         });
     };
 
-    Validation.prototype.addListener = function (listener) {
-        this.listeners.push(listener);
-    };
-
     Validation.prototype.notifyChange = function () {
         this.listeners.forEach(function (listener) {
             listener(this.state);
         }.bind(this));
     };
 
-    Validation.prototype.onSubmit = function (fun) {
-        return this.form.addEventListener('submit', fun);
-    };
-
-    Validation.prototype.onReset = function (fun) {
-        return this.form.addEventListener('reset', fun);
+    Validation.prototype.on = function (target, fun) {
+        if (target === 'change') {
+            this.listeners.push(fun);
+        } else {
+            this.form.addEventListener(target, fun);
+        }
     };
 
     // Node.js (CommonJS)
