@@ -11,7 +11,6 @@
  * - better template support
  * 
  * - add getState / setState methods
- * - add getValues method
  */
 
 (function () {
@@ -112,7 +111,7 @@
         }
 
         input.addEventListener(on, function () {
-            this.notifyChange();
+            this._notifyChange();
 
             lifeCycle.validate(input.value, function (valid, message) {
                 this.state[name] = valid;
@@ -159,7 +158,7 @@
                 init(this.cache[name]);
             }
         }.bind(this));
-        this.notifyChange();
+        this._notifyChange();
     };
 
     Validation.prototype.resetInput = function (name) {
@@ -206,7 +205,7 @@
         });
     };
 
-    Validation.prototype.notifyChange = function () {
+    Validation.prototype._notifyChange = function () {
         this.listeners.forEach(function (listener) {
             listener(this.state);
         }.bind(this));
