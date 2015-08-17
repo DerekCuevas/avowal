@@ -1,4 +1,4 @@
-# Basic Example - Particle
+# Basic Example - Particle Editor
 
 After cloning the main repo, cd into this directory and open index.html.
 
