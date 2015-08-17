@@ -27,7 +27,7 @@ var Validation = require('Validation');
 ```
 
 ## Examples
-Exapmles of the form validation can be found in /examples. There are two examples, a particle editior (basic) and a sign up form (advanced).
+Exapmles of the form validation can be found in /examples. There are two examples, a particle editior (particle) and a sign up form (signup).
 
 ## Todo
 - documentation work
