@@ -111,11 +111,10 @@
         }
 
         input.addEventListener(on, function () {
-            this._notifyChange();
-
             lifeCycle.validate(input.value, function (valid, message) {
                 this.state[name] = valid;
                 this._showStatus(name, valid, message);
+                this._notifyChange();
 
                 if (valid && lifeCycle.whenValid) {
                     lifeCycle.whenValid(input.value);

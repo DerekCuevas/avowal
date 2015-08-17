@@ -28,7 +28,7 @@
     };
 
     var particle = new Validation({
-        name: 'basic',
+        name: 'particle',
         on: 'input',
         templates: {
             success: 'template.success',
@@ -49,7 +49,7 @@
                 } else if (!valid) {
                     callback(false, 'The color entered is an invalid hex color.');
                 } else {
-                    callback(true, 'The color looks good, valid hex color.');
+                    callback(true, 'The color looks good.');
                 }
             }
         },
@@ -92,7 +92,25 @@
         newParticle.style.background = p.color;
 
         particles.appendChild(newParticle);
+        return newParticle;
     };
+
+    particle.on('change', (function () {
+        var particles = document.getElementById('particles');
+        var preview;
+
+        return function () {
+            var valid = particle.isValid();
+            var p = particle.values();
+
+            if (valid) {
+                if (preview) {
+                    particles.removeChild(preview);
+                }
+                preview = draw(p);
+            }
+        };
+    }()));
 
     particle.on('submit', function (e) {
         e.preventDefault();
@@ -101,6 +119,7 @@
             var p = particle.values();
             if (valid) {
                 draw(p);
+                particle.reset(true);
             }
         });
     });

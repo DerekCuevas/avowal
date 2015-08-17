@@ -17,18 +17,19 @@ html, body {
 h3 {
     padding-bottom: 5px;
     margin: 1px 2px 10px 2px;
-    border-bottom: 1px solid rgb(149, 165, 166);
-    color: rgb(66, 70, 71);
+    border-bottom: 2px solid rgb(169, 169, 169);
+    color: rgb(169, 169, 169);
     font-weight: normal;
     font-size: 110%;
 }
 
 form {
     padding: 10px;
-    margin: 10px;
+    /*margin: 10px;*/
     max-width: 250px;
-    background: rgba(236, 240, 241, 1.0);
-    border-radius: 10px;
+    /*background: rgba(236, 240, 241, 1.0);*/
+    background: rgb(39, 39, 39);
+    border-radius: 0 0 10px 0;
 }
 
 form ul {
@@ -45,24 +46,28 @@ input {
     height: 33px;
     font-size: 80%;
     outline: none;
-    border: 2px solid rgb(189, 195, 199);
-    border-radius: 3px;
+    /*border: 2px solid rgb(189, 195, 199);*/
+    border-radius: 5px;
     padding-left: 5px;
+
+    background: rgb(39, 39, 39);
+    border: 2px solid rgb(114, 114, 114);
+    color: rgb(189, 189, 189);
 }
 
 input:focus {
-    box-shadow: 0 0 5px rgb(149, 165, 166);
+    box-shadow: 0 0 3px rgb(149, 165, 166);
     border: 2px solid rgb(149, 165, 166);
 }
 
 input.success {
-    box-shadow: 0 0 3px rgb(26, 188, 156);
-    border: 1px solid rgb(26, 188, 156);
+    /*box-shadow: 0 0 3px rgb(149, 165, 166);
+    border: 2px solid rgb(149, 165, 166);*/
 }
 
 input.error {
-    box-shadow: 0 0 3px rgb(52, 73, 94);
-    border: 1px solid rgb(52, 73, 94);
+    box-shadow: 0 0 3px rgb(236, 240, 241);
+    border: 2px solid rgb(236, 240, 241);
 }
 
 button {
@@ -71,9 +76,9 @@ button {
     border: none;
     border-radius: 4px;
     font-size: 80%;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(189, 195, 199);
-    color: rgb(66, 70, 71);
+    border: 2px solid rgb(114, 114, 114);
+    background-color: rgb(39, 39, 39);
+    color: rgb(169, 169, 169);
 }
 
 button:active {
@@ -86,12 +91,12 @@ button:active {
 
 div.success {
     font-size: 80%;
-    color: rgb(26, 188, 156);
+    color: rgb(44, 62, 80);
 }
 
 div.error {
     font-size: 80%;
-    color: rgb(52, 73, 94);
+    color: rgb(236, 240, 241);
 }
 
 .status {
