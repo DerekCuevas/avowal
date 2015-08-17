@@ -56,6 +56,8 @@
                 }
             }
         },
+
+        // FIXME: document.width / document.height no support in chrome
         radius: {
             validate: function (radius, callback) {
                 var valid = validateSize(radius, 0, document.width / 2, 'radius');
