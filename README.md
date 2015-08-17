@@ -1,6 +1,7 @@
 # Validation
-Super lightweight zero dependency optionally asynchronous JavaScript form validation.
-Work in Progress (see Todo).
+Super lightweight zero dependency optionally asynchronous JavaScript form validation. 
+
+An arbitrary number of form inputs can be validated that require asynchronous validation (ex. AJAX) while avoiding race conditions and other common pitfalls. Work in Progress (see Todo). Detailed documentation is in the doc/ directory.
 
 ## Setup
 Clone or 'npm install' this repository.

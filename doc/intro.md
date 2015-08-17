@@ -1,5 +1,5 @@
 # Documentation
-A Guide to using the form validation.
+A guide to using the form validation.
 
 ## Using it
 
