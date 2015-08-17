@@ -70,6 +70,12 @@
             whenInvalid: function () {
                 this.color.style.width = '100%';
                 this.colorPreview.style.display = 'none';
+            },
+            transform: function (color) {
+                if (color.indexOf('#') !== 0) {
+                    return '#' + color;
+                }
+                return color;
             }
         },
 
