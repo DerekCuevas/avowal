@@ -3,7 +3,7 @@
 After cloning the main repo, cd into this directory and npm install / start the server. Open http://localhost:3000.
 
 ```sh
-# in Validation/
+# from Validation/
 cd examples/advanced
 npm install
 npm start
