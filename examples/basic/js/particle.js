@@ -8,6 +8,9 @@
 (function () {
     'use strict';
 
+    var particles = document.getElementById('particles');
+    var preview;
+
     var validateSize = function (size, min, max, name) {
         var ret = {};
 
@@ -16,7 +19,7 @@
             ret.message = 'The ' + name + ' is required.';
         } else if (size <= min) {
             ret.valid = false;
-            ret.message = 'The ' + name + ' must be greater than zero.';
+            ret.message = 'The ' + name + ' must be greater than ' + min + '.';
         } else if (size >= max) {
             ret.valid = false;
             ret.message = 'The ' + name + ' must be less than the current window size.';
@@ -79,7 +82,6 @@
 
     var draw = function (p) {
         var newParticle = document.createElement('div');
-        var particles = document.getElementById('particles');
 
         newParticle.style.position = 'absolute';
         newParticle.style.borderRadius = pixelize(p.radius);
@@ -95,22 +97,17 @@
         return newParticle;
     };
 
-    particle.on('change', (function () {
-        var particles = document.getElementById('particles');
-        var preview;
+    particle.on('change', function () {
+        var valid = particle.isValid();
+        var p = particle.values();
 
-        return function () {
-            var valid = particle.isValid();
-            var p = particle.values();
-
-            if (valid) {
-                if (preview) {
-                    particles.removeChild(preview);
-                }
-                preview = draw(p);
+        if (valid) {
+            if (preview) {
+                particles.removeChild(preview);
             }
-        };
-    }()));
+            preview = draw(p);
+        }
+    });
 
     particle.on('submit', function (e) {
         e.preventDefault();
@@ -125,6 +122,10 @@
     });
 
     particle.on('reset', function () {
+        if (preview) {
+            particles.removeChild(preview);
+            preview = undefined;
+        }
         particle.reset();
     });
 }());
