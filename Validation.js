@@ -62,8 +62,9 @@
             fail('Form "' + options.name + '" not found.');
         }
 
-        var templateSuccess = options.templates.success || 'template.success';
-        var templateError = options.templates.error || 'template.error';
+        // FIXME: do something if undefined
+        var templateSuccess = options.templates.success;
+        var templateError = options.templates.error;
 
         this.state = {};
         this.cache = {};
@@ -71,12 +72,11 @@
 
         this.listeners = [];
 
-        this.validateOn = options.on || 'input';
+        this.validateOn = options.on || 'submit';
 
         this.templates = {
             success: document.querySelector(templateSuccess).innerHTML,
-            error: document.querySelector(templateError).innerHTML,
-            status: '<div class="status-message"></div>'
+            error: document.querySelector(templateError).innerHTML
         };
 
         if (spec) {
