@@ -43,6 +43,13 @@
         color: {
             init: function (input) {
                 input.focus();
+
+                // we can use the lifecycle object to cache DOM nodes
+                this.color = input;
+                this.colorPreview = document.getElementById('color-preview');
+
+                this.color.style.width = '100%';
+                this.colorPreview.style.display = 'none';
             },
             validate: function (color, callback) {
                 var valid = /^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i.test(color);
@@ -54,6 +61,15 @@
                 } else {
                     callback(true, 'The color looks good.');
                 }
+            },
+            whenValid: function (color) {
+                this.color.style.width = '85%';
+                this.colorPreview.style.display = 'inline';
+                this.colorPreview.style.backgroundColor = color;
+            },
+            whenInvalid: function () {
+                this.color.style.width = '100%';
+                this.colorPreview.style.display = 'none';
             }
         },
 

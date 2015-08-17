@@ -145,7 +145,7 @@
 
     Validation.prototype.reset = function (clear) {
         forEvery(this.state, function (name) {
-            var init = this.lifeCycle[name].init;
+            var lifeCycle = this.lifeCycle[name];
 
             this.resetInput(name);
 
@@ -153,8 +153,8 @@
                 this.cache[name].value = "";
             }
 
-            if (init) {
-                init(this.cache[name]);
+            if (lifeCycle.init) {
+                lifeCycle.init(this.cache[name]);
             }
         }.bind(this));
         this._notifyChange();

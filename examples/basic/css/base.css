@@ -41,6 +41,10 @@ form ul li {
     position: relative;
 }
 
+/*input[name=color] {
+    width: 85%;
+}*/
+
 input {
     width: 100%;
     height: 33px;
@@ -103,4 +107,11 @@ div.error {
     font-size: 80%;
     margin: 0px 3px 2px 3px;
     color: rgb(26, 188, 156);
+}
+
+#color-preview {
+    display: none;
+    padding: 5px 14px;
+    border-radius: 2px;
+    /*background-color: #abc;*/
 }
