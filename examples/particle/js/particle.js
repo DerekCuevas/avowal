@@ -78,23 +78,21 @@
                 return color;
             }
         },
-
-        // FIXME: document.width / document.height no support in chrome
         radius: {
             validate: function (radius, callback) {
-                var valid = validateSize(radius, 0, document.width / 2, 'radius');
+                var valid = validateSize(radius, 0, window.innerWidth / 2, 'radius');
                 callback(valid.valid, valid.message);
             }
         },
         x: {
             validate: function (x, callback) {
-                var valid = validateSize(x, -1, document.width, 'x position');
+                var valid = validateSize(x, -1, window.innerWidth, 'x position');
                 callback(valid.valid, valid.message);
             }
         },
         y: {
             validate: function (y, callback) {
-                var valid = validateSize(y, -1, document.height, 'y position');
+                var valid = validateSize(y, -1, window.innerHeight, 'y position');
                 callback(valid.valid, valid.message);
             }
         }
