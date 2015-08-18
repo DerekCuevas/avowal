@@ -70,9 +70,6 @@ signup.delegate({
         }
     },
     username: {
-        init: function (input) {
-            console.log('Init username:', input);
-        },
         validate: debounce(200, function (username, callback) {
             $.get('/available', {username: username}, function (available) {
                 callback(available, available ?
@@ -85,12 +82,6 @@ signup.delegate({
                 return true;
             }
         }),
-        whenValid: function (username) {
-            console.log('Username valid:', username);
-        },
-        whenInvalid: function (username) {
-            console.log('Username invalid:', username);
-        },
         transform: function (username) {
             if (username.indexOf('@') !== 0) {
                 return '@' + username;
