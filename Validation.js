@@ -11,6 +11,10 @@
  * - better template support
  * 
  * - add getState / setState methods
+ *
+ * Not Happy about:
+ * - lack of private vars / methods
+ * - binding this to everything
  */
 
 (function () {
@@ -186,9 +190,9 @@
 
         asyncForEvery(this.state, function (name, _, done) {
             var input = this.cache[name];
-            var validate = this.lifeCycle[name].validate;
+            var lifeCycle = this.lifeCycle[name];
 
-            validate(input.value, function (valid, message) {
+            lifeCycle.validate(input.value, function (valid, message) {
                 this.state[name] = valid;
 
                 if (!valid) {
