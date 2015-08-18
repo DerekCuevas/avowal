@@ -25,11 +25,12 @@ h3 {
 
 form {
     padding: 10px;
-    /*margin: 10px;*/
     max-width: 250px;
-    /*background: rgba(236, 240, 241, 1.0);*/
+    min-width: 250px;
     background: rgb(39, 39, 39);
     border-radius: 0 0 10px 0;
+    z-index: 1000;
+    position: absolute;
 }
 
 form ul {
@@ -41,19 +42,13 @@ form ul li {
     position: relative;
 }
 
-/*input[name=color] {
-    width: 85%;
-}*/
-
 input {
     width: 100%;
     height: 33px;
     font-size: 80%;
     outline: none;
-    /*border: 2px solid rgb(189, 195, 199);*/
     border-radius: 5px;
     padding-left: 5px;
-
     background: rgb(39, 39, 39);
     border: 2px solid rgb(114, 114, 114);
     color: rgb(189, 189, 189);
@@ -113,5 +108,4 @@ div.error {
     display: none;
     padding: 5px 14px;
     border-radius: 2px;
-    /*background-color: #abc;*/
 }

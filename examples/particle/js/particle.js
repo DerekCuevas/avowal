@@ -45,10 +45,10 @@
                 input.focus();
 
                 // we can use the lifecycle object to cache DOM nodes
-                this.color = input;
+                this.input = input;
                 this.colorPreview = document.getElementById('color-preview');
 
-                this.color.style.width = '100%';
+                this.input.style.width = '100%';
                 this.colorPreview.style.display = 'none';
             },
             validate: function (color, callback) {
@@ -63,12 +63,12 @@
                 }
             },
             whenValid: function (color) {
-                this.color.style.width = '85%';
+                this.input.style.width = '85%';
                 this.colorPreview.style.display = 'inline';
                 this.colorPreview.style.backgroundColor = color;
             },
             whenInvalid: function () {
-                this.color.style.width = '100%';
+                this.input.style.width = '100%';
                 this.colorPreview.style.display = 'none';
             },
             transform: function (color) {
@@ -120,14 +120,11 @@
     };
 
     particle.on('change', function () {
-        var valid = particle.isValid();
-        var p = particle.values();
-
-        if (valid) {
+        if (particle.isValid()) {
             if (preview) {
                 particles.removeChild(preview);
             }
-            preview = draw(p);
+            preview = draw(particle.values());
         }
     });
 
@@ -135,9 +132,8 @@
         e.preventDefault();
 
         particle.validateAll(function (valid) {
-            var p = particle.values();
             if (valid) {
-                draw(p);
+                draw(particle.values());
                 particle.reset(true);
             }
         });
