@@ -221,10 +221,28 @@
 
     Validation.prototype.values = function () {
         var vals = {};
-        forEvery(this.cache, function (name, ref) {
-            vals[name] = ref.value;
+        forEvery(this.cache, function (name, input) {
+            vals[name] = input.value;
         });
         return vals;
+    };
+
+    // FIXME: add a _validate private method that takes care of
+    // validating and excuting appropriate lifcycle methods
+    Validation.prototype.setValues = function (values) {
+        forEvery(this.cache, function (name, input) {
+            if (!values[name]) {
+                return;
+            }
+
+            var lifeCycle = this.lifeCycle[name];
+            input.value = values[name];
+            
+            lifeCycle.validate(input.value, function (valid, message) {
+                this.state[name] = valid;
+                this._showStatus(name, valid, message);
+            }.bind(this));
+        }.bind(this));
     };
 
     // Node.js (CommonJS)

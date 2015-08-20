@@ -146,4 +146,8 @@
         }
         particle.reset();
     });
+
+    particle.setValues({
+        color: '#abc'
+    });
 }());
