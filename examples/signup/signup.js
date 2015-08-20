@@ -1,6 +1,6 @@
 /**
  * Advanced Aysnc form validation example.
- * A sign up form, the validation includes a GET to the server,
+ * A sign up form, the validation includes a GET HTTP request to the server,
  * to check if the username entered is available.
  *
  * @author Derek Cuevas
@@ -43,7 +43,6 @@ function debounce(freq, fn, except) {
     };
 }
 
-// create a new form validator instance for the signup form
 var signup = new Validation({
     name: 'signup',
     on: 'input',
@@ -96,6 +95,8 @@ signup.delegate({
         }
     },
     password_two: {
+
+        // using a closure to cache the DOM
         validate: (function () {
             var $password_one = $signup.find('[name=password_one]');
 
@@ -129,7 +130,6 @@ function send() {
     });
 }
 
-// add a submit handler
 signup.on('submit', function (e) {
     e.preventDefault();
 
