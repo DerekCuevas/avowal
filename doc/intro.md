@@ -84,11 +84,11 @@ color: {
 delegate
 ```javascript
 // Delegates control of a form to the validator. The spec object's keys 
-// correspond to the name attributes of the forms inputs. The 
+// correspond to the name attributes of the form's inputs. The 
 // values are the life cycle objects for the matched inputs.
 
 // ex.
-// spec = {name: {/*lifeCycle*/}, age: {/*lifecycle*/}}
+// var spec = {name: {/*lifeCycle*/}, age: {/*lifecycle*/}}
 Validation.prototype.delegate = function (spec) {...}
 ```
 
