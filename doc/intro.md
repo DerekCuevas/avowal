@@ -79,11 +79,16 @@ color: {
     transform: function (val) {...}
 }
 ```
-## Validation methods
+## Validation methods (Documentation in progress)
 
 delegate
 ```javascript
-// binds a spec object to the validator
+// Delegates control of a form to the validator. The spec object's keys 
+// correspond to the name attributes of the forms inputs. The 
+// values are the life cycle objects for the matched inputs.
+
+// ex.
+// spec = {name: {/*lifeCycle*/}, age: {/*lifecycle*/}}
 Validation.prototype.delegate = function (spec) {...}
 ```
 
