@@ -61,7 +61,6 @@
         }
 
         this.form = document.querySelector('form[name=' + options.name + ']');
-
         if (!this.form) {
             fail('Form "' + options.name + '" not found.');
         }
@@ -73,9 +72,7 @@
         this.state = {};
         this.cache = {};
         this.lifeCycle = {};
-
         this.listeners = [];
-
         this.validateOn = options.on || 'submit';
 
         this.templates = {
