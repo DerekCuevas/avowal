@@ -122,3 +122,8 @@ values
 ```javascript
 Validation.prototype.values = function () {...}
 ```
+
+setValues
+```javascript
+Validation.prototype.setValues = function (values)
+```
