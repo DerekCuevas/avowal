@@ -97,6 +97,23 @@
         });
     };
 
+    Validation.prototype._validate = function (name) {
+        var lifeCycle = this.lifeCycle[name];
+        var input = this.cache[name];
+
+        lifeCycle.validate(input.value, function (valid, message) {
+            this.state[name] = valid;
+            this._showStatus(name, valid, message);
+            this._notifyChange();
+
+            if (valid && lifeCycle.whenValid) {
+                lifeCycle.whenValid(input.value);
+            } else if (!valid && lifeCycle.whenInvalid) {
+                lifeCycle.whenInvalid(input.value);
+            }
+        }.bind(this));
+    };
+
     Validation.prototype._initLifeCycle = function (name, on) {
         var lifeCycle = this.lifeCycle[name];
         var input = this.cache[name];
@@ -112,17 +129,7 @@
         }
 
         input.addEventListener(on, function () {
-            lifeCycle.validate(input.value, function (valid, message) {
-                this.state[name] = valid;
-                this._showStatus(name, valid, message);
-                this._notifyChange();
-
-                if (valid && lifeCycle.whenValid) {
-                    lifeCycle.whenValid(input.value);
-                } else if (!valid && lifeCycle.whenInvalid) {
-                    lifeCycle.whenInvalid(input.value);
-                }
-            }.bind(this));
+            this._validate(name);
         }.bind(this));
     };
 
@@ -227,21 +234,13 @@
         return vals;
     };
 
-    // FIXME: add a _validate private method that takes care of
-    // validating and excuting appropriate lifcycle methods
     Validation.prototype.setValues = function (values) {
         forEvery(this.cache, function (name, input) {
             if (!values[name]) {
                 return;
             }
-
-            var lifeCycle = this.lifeCycle[name];
             input.value = values[name];
-            
-            lifeCycle.validate(input.value, function (valid, message) {
-                this.state[name] = valid;
-                this._showStatus(name, valid, message);
-            }.bind(this));
+            this._validate(name);
         }.bind(this));
     };
 
