@@ -1,7 +1,7 @@
 # Validation
 Super lightweight zero dependency optionally asynchronous JavaScript form validation framework (phew!). 
 
-Built for form driven apps, an arbitrary number of form inputs can be validated that require asynchronous validation (ex. AJAX) while avoiding race conditions and other common pitfalls. Detailed documentation is in the doc/ directory.
+Built for form driven apps. An arbitrary number of form inputs can be validated that require asynchronous validation (ex. AJAX) while avoiding race conditions and callback hell. Detailed documentation is in the doc/ directory.
 
 Work in Progress (see Todo).
 
@@ -52,6 +52,7 @@ person.delegate({
 });
 
 person.on('submit', function (e) {
+    e.preventDefault();
     person.validateAll(function (valid) {
         if (valid) {
             // do something
@@ -61,7 +62,7 @@ person.on('submit', function (e) {
 ```
 
 ## Examples
-Examples of the form validation can be found in /examples. There are two examples, a particle editor (particle) and a sign up form (signup).
+Examples of the form validation can be found in /examples. There are two examples, a particle editor (/particle) and a sign up form (/signup).
 
 ## Todo
 - documentation work
