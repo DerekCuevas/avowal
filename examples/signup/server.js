@@ -28,13 +28,16 @@ app.get('/available', function (req, res) {
         return user.username === username;
     }).length;
 
-    res.json(count === 0);
+    // setting a more realistic delay, don't do this in production
+    setTimeout(function () {
+        res.json(count === 0);
+    }, 500);
 });
 
 app.post('/signup', function (req, res) {
     users.push({
         username: req.body.username,
-        user: req.body.name
+        user: req.body.first + ' ' + req.body.last
     });
     res.redirect(303, '/users');
 });

@@ -53,34 +53,53 @@ var signup = new Validation({
 });
 
 signup.delegate({
-    name: {
+    first: {
         init: function (input) {
             input.focus();
         },
-        validate: function (name, callback) {
-            var valid = !isEmpty(name);
-            var message = valid ? 'Full name ok.' : 'Full name required.';
+        validate: function (first, callback) {
+            var valid = !isEmpty(first);
+            var message = valid ? 'First name looks good.' : 'First name required.';
             callback(valid, message);
         },
-        transform: function (name) {
+        transform: function (first) {
 
             //probably not the best idea, but just to show you can
-            return titleCase(name);
+            return titleCase(first);
+        }
+    },
+    last: {
+        validate: function (last, callback) {
+            var valid = !isEmpty(last);
+            var message = valid ? 'Last name looks good.' : 'Last name required.';
+            callback(valid, message);
+        },
+        transform: function (last) {
+            return titleCase(last);
         }
     },
     username: {
-        validate: debounce(200, function (username, callback) {
-            $.get('/available', {username: username}, function (available) {
-                callback(available, available ?
-                    'Username available.' :
-                    'Sorry, username taken.');
+
+        // using a closure to cache the DOM
+        validate: (function () {
+            var spinner = document.querySelector('.username-spinner');
+
+            return debounce(200, function (username, callback) {
+                spinner.style.display = 'inline';
+
+                $.get('/available', {username: username}, function (available) {
+                    var message = available ? 'Username available.' : 'Sorry, username taken.';
+
+                    spinner.style.display = 'none';
+                    callback(available, message);
+                });
+            }, function (username, callback) {
+                if (isEmpty(username) || username === '@') {
+                    callback(false, 'Username required.');
+                    return true;
+                }
             });
-        }, function (username, callback) {
-            if (isEmpty(username) || username === '@') {
-                callback(false, 'Username required.');
-                return true;
-            }
-        }),
+        }()),
         transform: function (username) {
             if (username.indexOf('@') !== 0) {
                 return '@' + username;
@@ -95,8 +114,6 @@ signup.delegate({
         }
     },
     password_two: {
-
-        // using a closure to cache the DOM
         validate: (function () {
             var $password_one = $signup.find('[name=password_one]');
 
@@ -116,7 +133,7 @@ signup.delegate({
 });
 
 function send() {
-    $.post('/signup', $signup.serialize(), function () {
+    $.post('/signup', signup.values(), function () {
         var user = $user.val();
         var icon = '<i class="fa fa-smile-o"></i> ';
 

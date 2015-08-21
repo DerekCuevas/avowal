@@ -1,30 +1,40 @@
 <!doctype html>
 <html>
 <head>
-    <title>Sign Up</title>
+    <title>Signup</title>
 
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <link rel="stylesheet" 
         href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
-    <form name="signup" method="post" action="/signup">
-        <h3>
-            <i class="fa fa-bomb"></i>
-            User Sign Up
-        </h3>
+    <form name="signup">
+        <h1><i class="fa fa-user-plus"></i> User Signup</h1>
         <div class="status"></div>
 
         <ul>
             <li>
-                <input type="text" name="name" 
-                    placeholder="Full Name">
-                <div class="status-message"></div>
+                <div class="split">
+                    <div class="left">
+                        <input type="text" name="first" class="name" 
+                            placeholder="First Name">
+                        <div class="status-message"></div>
+                    </div>
+                    <div class="middle"></div>
+                    <div class="right">
+                        <input type="text" name="last" class="name"
+                            placeholder="Last Name">
+                        <div class="status-message"></div>
+                    </div>
+                </div>
             </li>
             <li>
-                <input type="text" name="username" 
-                    placeholder="@Username">
-                <div class="status-message"></div>
+                <div class="input-container">
+                    <input type="text" name="username" 
+                        placeholder="@Username">
+                    <i class="fa fa-spinner fa-spin username-spinner"></i>
+                    <div class="status-message"></div>
+                </div>
             </li>
             <li>
                 <input type="password" name="password_one" 
@@ -58,7 +68,7 @@
 
     <template class="error">
         <div class="error">
-            <i class="fa fa-exclamation"></i> 
+            <i class="fa fa-exclamation-circle"></i>
             {{status}}
         </div>
     </template>
