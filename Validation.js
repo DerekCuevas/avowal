@@ -6,10 +6,10 @@
 /**
  * TODOs:
  * - documentation work
- * 
+ *
  * - better status-message support / cache ref (re-work this)
  * - better template support
- * 
+ *
  * - add getState / setState methods
  *
  * Not Happy about:
@@ -153,28 +153,27 @@
 
     Validation.prototype.reset = function (clear) {
         forEvery(this.state, function (name) {
-            var lifeCycle = this.lifeCycle[name];
-
-            this.resetInput(name);
-
-            if (clear) {
-                this.cache[name].value = "";
-            }
-
-            if (lifeCycle.init) {
-                lifeCycle.init(this.cache[name]);
-            }
+            this.resetInput(name, clear);
         }.bind(this));
-        this._notifyChange();
     };
 
-    Validation.prototype.resetInput = function (name) {
+    Validation.prototype.resetInput = function (name, clear) {
         var input = this.cache[name];
+        var lifeCycle = this.lifeCycle[name];
         var status = input.parentNode.querySelector('.status-message');
+
+        if (clear) {
+            input.value = "";
+        }
+
+        if (lifeCycle.init) {
+            lifeCycle.init(this.cache[name]);
+        }
 
         this.state[name] = false;
         input.classList.remove('success', 'error');
         status.innerHTML = '';
+        this._notifyChange();
     };
 
     Validation.prototype.isValid = function () {
