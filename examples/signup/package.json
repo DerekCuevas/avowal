@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "browserify signup.js | uglifyjs -mc > public/js/bundle.js",
+    "build-js": "browserify signup.js > public/js/bundle.js",
     "watch-js": "watchify signup.js -o public/js/bundle.js -dv",
     "start": "npm run build-js && node server.js"
   },

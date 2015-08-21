@@ -59,7 +59,7 @@ signup.delegate({
         },
         validate: function (first, callback) {
             var valid = !isEmpty(first);
-            var message = valid ? 'First name looks good.' : 'First name required.';
+            var message = valid ? 'First name ok' : 'First name required.';
             callback(valid, message);
         },
         transform: function (first) {
@@ -71,7 +71,7 @@ signup.delegate({
     last: {
         validate: function (last, callback) {
             var valid = !isEmpty(last);
-            var message = valid ? 'Last name looks good.' : 'Last name required.';
+            var message = valid ? 'Last name ok.' : 'Last name required.';
             callback(valid, message);
         },
         transform: function (last) {
@@ -82,16 +82,16 @@ signup.delegate({
 
         // using a closure to cache the DOM
         validate: (function () {
-            var spinner = document.querySelector('.username-spinner');
+            var $spinner = $('.username-spinner');
 
             return debounce(200, function (username, callback) {
-                spinner.style.display = 'inline';
+                $spinner.show();
 
                 $.get('/available', {username: username}, function (available) {
-                    var message = available ? 'Username available.' : 'Sorry, username taken.';
-
-                    spinner.style.display = 'none';
-                    callback(available, message);
+                    $spinner.hide();
+                    callback(available, available ? 
+                        'Username available.' : 
+                        'Sorry, username taken.');
                 });
             }, function (username, callback) {
                 if (isEmpty(username) || username === '@') {
