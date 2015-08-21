@@ -31,7 +31,7 @@ app.get('/available', function (req, res) {
     // setting a more realistic delay, don't do this in production
     setTimeout(function () {
         res.json(count === 0);
-    }, 500);
+    }, 250);
 });
 
 app.post('/signup', function (req, res) {

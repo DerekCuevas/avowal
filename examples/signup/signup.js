@@ -91,7 +91,7 @@ signup.delegate({
                     $spinner.hide();
                     callback(available, available ? 
                         'Username available.' : 
-                        'Sorry, username taken.');
+                        'Sorry, the username "' + username + '" is taken.');
                 });
             }, function (username, callback) {
                 if (isEmpty(username) || username === '@') {
