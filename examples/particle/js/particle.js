@@ -72,6 +72,9 @@
                 this.colorPreview.style.display = 'none';
             },
             transform: function (color) {
+                if (color.length === 0) {
+                    return color;
+                }
                 if (color.indexOf('#') !== 0) {
                     return '#' + color;
                 }

@@ -55,8 +55,7 @@ input {
 }
 
 input:focus {
-    box-shadow: 0 0 3px rgb(114, 114, 114);
-    border: 2px solid rgb(114, 114, 114);
+    border: 2px solid rgb(164, 164, 164);
 }
 
 input.success {
@@ -65,7 +64,6 @@ input.success {
 }
 
 input.error {
-    box-shadow: 0 0 3px rgb(236, 240, 241);
     border: 2px solid rgb(236, 240, 241);
 }
 
@@ -107,5 +105,5 @@ div.error {
 #color-preview {
     display: none;
     padding: 5px 14px;
-    border-radius: 2px;
+    border-radius: 15px;
 }

@@ -9571,6 +9571,10 @@ signup.delegate({
             });
         }()),
         transform: function (username) {
+            if (username.length === 0) {
+                return username;
+            }
+
             if (username.indexOf('@') !== 0) {
                 return '@' + username;
             }
@@ -9591,7 +9595,7 @@ signup.delegate({
                 var password_one = $password_one.val();
 
                 if (!validPass(password)) {
-                    callback(false, 'Password invalid.');
+                    callback(false, 'Confirmation Password invalid.');
                 } else if (password_one !== password) {
                     callback(false, 'Password mismatch.');
                 } else {
