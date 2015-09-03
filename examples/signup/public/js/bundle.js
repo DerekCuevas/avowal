@@ -146,7 +146,7 @@
             this.state[name] = false;
             this.lifeCycle[name] = lifeCycle;
 
-            input.setAttribute('autocomplete', 'off');
+            //input.setAttribute('autocomplete', 'off');
 
             this._initLifeCycle(name, this.validateOn);
         }.bind(this));
