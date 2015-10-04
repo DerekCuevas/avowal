@@ -8,7 +8,6 @@
  * - documentation work
  *
  * - better status-message support / cache ref (re-work this)
- *
  * - add getState / setState methods
  *
  * Not Happy about:
