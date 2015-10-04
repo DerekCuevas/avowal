@@ -33,8 +33,8 @@ var person = new Validation({
     name: 'person',
     on: 'blur',
     templates: {
-        success: 'template.success',
-        error: 'template.error'
+        success: '<p class="success">{{status}}</p>',
+        error: '<p class="error">{{status}}</p>'
     }
 });
 
@@ -67,5 +67,4 @@ Examples of the form validation can be found in /examples. There are two example
 ## Todo
 - documentation work
 - better status-message support / cache ref (re-work this)
-- better template support
 - add getState / setState methods

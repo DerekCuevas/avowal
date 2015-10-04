@@ -34,8 +34,8 @@
         name: 'particle',
         on: 'input',
         templates: {
-            success: 'template.success',
-            error: 'template.error'
+            success: document.querySelector('template.success').innerHTML,
+            error: document.querySelector('template.error').innerHTML
         }
     });
 

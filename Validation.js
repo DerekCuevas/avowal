@@ -8,7 +8,6 @@
  * - documentation work
  *
  * - better status-message support / cache ref (re-work this)
- * - better template support
  *
  * - add getState / setState methods
  *
@@ -65,10 +64,6 @@
             fail('Form "' + options.name + '" not found.');
         }
 
-        // FIXME: do something if undefined
-        var templateSuccess = options.templates.success;
-        var templateError = options.templates.error;
-
         this.state = {};
         this.cache = {};
         this.lifeCycle = {};
@@ -76,8 +71,8 @@
         this.validateOn = options.on || 'submit';
 
         this.templates = {
-            success: document.querySelector(templateSuccess).innerHTML,
-            error: document.querySelector(templateError).innerHTML
+            success: options.templates.success || '',
+            error: options.templates.error || ''
         };
 
         if (spec) {

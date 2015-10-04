@@ -67,8 +67,8 @@
         }
 
         // FIXME: do something if undefined
-        var templateSuccess = options.templates.success;
-        var templateError = options.templates.error;
+        // var templateSuccess = options.templates.success;
+        // var templateError = options.templates.error;
 
         this.state = {};
         this.cache = {};
@@ -77,8 +77,8 @@
         this.validateOn = options.on || 'submit';
 
         this.templates = {
-            success: document.querySelector(templateSuccess).innerHTML,
-            error: document.querySelector(templateError).innerHTML
+            success: options.templates.success || '',
+            error: options.templates.error || ''
         };
 
         if (spec) {
@@ -146,7 +146,7 @@
             this.state[name] = false;
             this.lifeCycle[name] = lifeCycle;
 
-            //input.setAttribute('autocomplete', 'off');
+            input.setAttribute('autocomplete', 'off');
 
             this._initLifeCycle(name, this.validateOn);
         }.bind(this));
@@ -9517,8 +9517,8 @@ var signup = new Validation({
     name: 'signup',
     on: 'input',
     templates: {
-        success: 'template.success',
-        error: 'template.error'
+        success: document.querySelector('template.success').innerHTML,
+        error: document.querySelector('template.error').innerHTML
     }
 });
 
