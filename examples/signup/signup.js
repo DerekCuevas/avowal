@@ -63,7 +63,6 @@ signup.delegate({
             callback(valid, message);
         },
         transform: function (first) {
-
             //probably not the best idea, but just to show you can
             return titleCase(first);
         }
@@ -79,7 +78,6 @@ signup.delegate({
         }
     },
     username: {
-
         // using a closure to cache the DOM
         validate: (function () {
             var $spinner = $('.username-spinner');
@@ -136,28 +134,26 @@ signup.delegate({
     }
 });
 
-function send() {
-    $.post('/signup', signup.values(), function () {
-        var user = $user.val();
-        var icon = '<i class="fa fa-smile-o"></i> ';
-
-        $status
-            .hide()
-            .html(icon + 'Thank you for signing up, ' + user + '.')
-            .fadeIn()
-            .fadeOut(4000);
-
-        signup.reset(true);
-    });
-}
-
 signup.on('submit', function (e) {
     e.preventDefault();
 
     signup.validateAll(function (valid) {
-        if (valid) {
-            send();
+        if (!valid) {
+            return;
         }
+
+        $.post('/signup', signup.values(), function () {
+            var user = $user.val();
+            var icon = '<i class="fa fa-smile-o"></i> ';
+
+            $status
+                .hide()
+                .html(icon + 'Thank you for signing up, ' + user + '.')
+                .fadeIn()
+                .fadeOut(4000);
+
+            signup.reset(true);
+        });
     });
 });
 
