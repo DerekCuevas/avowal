@@ -47,8 +47,8 @@ var signup = new Validation({
     name: 'signup',
     on: 'input',
     templates: {
-        success: document.querySelector('template.success').innerHTML,
-        error: document.querySelector('template.error').innerHTML
+        success: $('template.success').html(),
+        error: $('template.error').html()
     }
 });
 
