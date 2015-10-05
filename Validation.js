@@ -10,6 +10,9 @@
  * - better status-message support / cache ref (re-work this)
  * - add getState / setState methods
  *
+ * - make rendering templates optional
+ * - add optional validation event 'on' to every input
+ *
  * Not Happy about:
  * - lack of private vars / methods
  * - binding this to everything
@@ -66,6 +69,7 @@
         this.state = {};
         this.cache = {};
         this.lifeCycle = {};
+
         this.listeners = [];
         this.validateOn = options.on || 'submit';
 
@@ -141,7 +145,7 @@
 
             input.setAttribute('autocomplete', 'off');
 
-            this._initLifeCycle(name, this.validateOn);
+            this._initLifeCycle(name, lifeCycle.on ? lifeCycle.on : this.validateOn);
         }.bind(this));
     };
 
