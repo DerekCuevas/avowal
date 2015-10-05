@@ -7,11 +7,13 @@
  * TODOs:
  * - documentation work
  *
- * - better status-message support / cache ref (re-work this)
+ * - consider rewriting in es6 w/babel
+ *
+ * - better status-message support / cache status-message ref (re-work this)
  * - add getState / setState methods
  *
  * - make rendering templates optional
- * - add optional validation event 'on' to every input
+ * - add optional validation event 'on' to every input (added just need to doc)
  *
  * Not Happy about:
  * - lack of private vars / methods
@@ -185,9 +187,9 @@
         return allValid;
     };
 
-    Validation.prototype.validateAll = function (callback) {
+    Validation.prototype.validateAll = function (cb) {
         var allValid = true;
-        var cb = callback || function () {};
+        cb = cb || function () {};
 
         asyncForEvery(this.state, function (name, _, done) {
             var input = this.cache[name];

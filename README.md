@@ -70,6 +70,7 @@ Examples of the form validation can be found in /examples. There are two example
 
 ## Todo
 - documentation work
+- consider rewriting in es6 w/babel
 - make rendering templates optional
-- better status-message support / cache ref (re-work this)
+- better status-message support / cache status-message ref (re-work this)
 - add getState / setState methods

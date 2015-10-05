@@ -44,7 +44,7 @@
             init: function (input) {
                 input.focus();
 
-                // we can use the lifecycle object to cache DOM nodes
+                // useing the lifecycle object to cache DOM nodes
                 this.input = input;
                 this.colorPreview = document.getElementById('color-preview');
 
