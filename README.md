@@ -1,11 +1,13 @@
 # Validation
 Super lightweight zero dependency optionally asynchronous JavaScript form validation framework (phew!).
 
-Some JavaScript form validation frameworks aim to provide every possible way to validate input data. For example, those frameworks provide ways to validate phone numbers, zip codes, email addresses ect. This framework does not take that approach, rather this framework aims at separating common form based events (input, blur, change, submit, ...) from functions that validate that input data along with functions to process side effects on that data.
+Some JavaScript form validation frameworks aim to provide every possible way to validate input data. For example, those frameworks provide ways to validate phone numbers, email addresses, numeric input, ect. This framework does not take that approach, rather this framework aims at separating common form based events (input, blur, change, submit, ...) from functions that validate that input data along with functions to process side effects on that data.
 
-An arbitrary number of form inputs can be validated that require asynchronous validation (ex. AJAX) while avoiding race conditions and callback hell. More documentation can be found in the doc/ directory.
+An arbitrary number of form inputs can be validated that require asynchronous validation (ex. AJAX) while avoiding race conditions and callback hell.
 
-Work in Progress (see Todo).
+The API is 100% js based, DOM attributes are not used to validate data. There is support for rendering validation messages against form inputs with templates (see examples).
+
+More documentation can be found in the doc/ directory. Work in Progress (see Todo).
 
 ## Setup
 Clone or 'npm install' this repository.
