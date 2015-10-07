@@ -114,3 +114,17 @@ Examples of the form validation can be found in /examples. There are two example
 - make rendering templates optional
 - better status-message support / cache status-message ref (re-work this)
 - add getState / setState methods
+
+## Ideas
+- allow multiple placeholder values on templates
+
+template: '<div>{{msg}}{{status}}{{other}}</div>'
+callback({
+    valid: true/false,
+    render: {
+        msg: '',
+        status: '',
+        other: '',
+        ...
+    }
+});
