@@ -118,6 +118,7 @@ Examples of the form validation can be found in /examples. There are two example
 ## Ideas
 - allow multiple placeholder values on templates
 
+```javascript
 template: '<div>{{msg}}{{status}}{{other}}</div>'
 callback({
     valid: true/false,
@@ -128,3 +129,4 @@ callback({
         ...
     }
 });
+```
