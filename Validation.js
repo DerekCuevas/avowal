@@ -1,23 +1,6 @@
 /**
- * Asynchronous form validation.
+ * Validation
  * @author Derek Cuevas
- */
-
-/**
- * TODOs:
- * - documentation work
- *
- * - consider rewriting in es6 w/babel
- *
- * - better status-message support / cache status-message ref (re-work this)
- * - add getState / setState methods
- *
- * - make rendering templates optional
- * - add optional validation event 'on' to every input (added just need to doc)
- *
- * Not Happy about:
- * - lack of private vars / methods
- * - binding this to everything
  */
 
 (function () {
