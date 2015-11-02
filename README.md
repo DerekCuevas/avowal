@@ -61,6 +61,14 @@ particle.delegate({
         // Init is called once when the form is mounted, and after every reset
         // of the form. The input DOM ref is passed in as an arg.
         init: function (input) {
+            input.focus();
+
+            // using the lifecycle object to cache DOM nodes
+            this.input = input;
+            this.colorPreview = document.getElementById('color-preview');
+
+            this.input.style.width = '100%';
+            this.colorPreview.style.display = 'none';
         },
 
         // validate: REQUIRED
@@ -68,26 +76,46 @@ particle.delegate({
         // callback function. Pass the result of the validation back through the
         // callback. The callback has the following signature - callback(valid, message)
         validate: function (color, callback) {
+            var valid = /^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i.test(color);
+
+            if (color.length === 0) {
+                callback(false, 'The color is required.');
+            } else if (!valid) {
+                callback(false, 'The color entered is an invalid hex color.');
+            } else {
+                callback(true, 'The color looks good.');
+            }
         },
 
         // whenValid: OPTIONAL
         // WhenValid gets called whenever the validate function above returns true.
         // The value of the input is passed in as an arg.
         whenValid: function (color) {
+            this.input.style.width = '85%';
+            this.colorPreview.style.display = 'inline';
+            this.colorPreview.style.backgroundColor = color;
         },
 
         // whenInvalid: OPTIONAL
         // WhenInvalid gets called whenever the validate function above returns false.
         // The value of the input is passed in as an arg.
         whenInvalid: function (color) {
+            this.input.style.width = '100%';
+            this.colorPreview.style.display = 'none';
         },
 
         // transform: OPTIONAL
         // Called on input, this function can be used to modify the input
         // real time as the user types. The old value of the input is passed in as an arg.
         // the new value should be returned.
-        transform: function (oldColor) {
-            return newColor;
+        transform: function (color) {
+            if (color.length === 0) {
+                return color;
+            }
+            if (color.indexOf('#') !== 0) {
+                return '#' + color;
+            }
+            return color;
         }
     },
     ...
