@@ -43,7 +43,7 @@
         opts.templates = opts.templates || {};
 
         if (!opts.name) {
-            fail('Form name needed.');
+            fail('Form name attribute needed.');
         }
 
         this.form = document.querySelector('form[name=' + opts.name + ']');

@@ -52,13 +52,13 @@ particle.delegate({
     // specify a lifecycle object for each input in the form
     color: {
 
-        // on: OPTIONAL
+        // OPTIONAL
         // Specify a form input event to validate on. (input, blur, change, ...)
         // For consistency use the constructors options.on value instead.
         on: ''
 
-        // init: OPTIONAL
-        // Init is called once when the form is mounted, and after every reset
+        // OPTIONAL
+        // init is called once when the form is mounted, and after every reset
         // of the form. The input DOM ref is passed in as an arg.
         init: function (input) {
             input.focus();
@@ -71,8 +71,8 @@ particle.delegate({
             this.colorPreview.style.display = 'none';
         },
 
-        // validate: REQUIRED
-        // Validate accepts two params, the current value of the input and a
+        // REQUIRED
+        // validate accepts two params, the current value of the input and a
         // callback function. Pass the result of the validation back through the
         // callback. The callback has the following signature - callback(valid, message)
         validate: function (color, callback) {
@@ -87,8 +87,8 @@ particle.delegate({
             }
         },
 
-        // whenValid: OPTIONAL
-        // WhenValid gets called whenever the validate function above returns true.
+        // OPTIONAL
+        // whenValid gets called whenever the validate function above returns true.
         // The value of the input is passed in as an arg.
         whenValid: function (color) {
             this.input.style.width = '85%';
@@ -96,15 +96,15 @@ particle.delegate({
             this.colorPreview.style.backgroundColor = color;
         },
 
-        // whenInvalid: OPTIONAL
-        // WhenInvalid gets called whenever the validate function above returns false.
+        // OPTIONAL
+        // whenInvalid gets called whenever the validate function above returns false.
         // The value of the input is passed in as an arg.
         whenInvalid: function (color) {
             this.input.style.width = '100%';
             this.colorPreview.style.display = 'none';
         },
 
-        // transform: OPTIONAL
+        // OPTIONAL
         // Called on input, this function can be used to modify the input
         // real time as the user types. The old value of the input is passed in as an arg.
         // the new value should be returned.
@@ -136,25 +136,7 @@ particle.on('submit', function (e) {
 Examples of the form validation can be found in /examples. There are two examples, a particle editor (/particle) and a sign up form (/signup).
 
 ## To do
-- replace jslint with eslint, add .eslintrc
 - documentation work
-- consider rewriting in es6 w/babel
-- make rendering templates optional
+- make rendering templates optional?
 - better status-message support / cache status-message ref (re-work this)
 - add getState / setState methods
-
-## Ideas
-- allow multiple placeholder values on templates
-
-```javascript
-template: '<div>{{msg}}{{status}}{{other}}</div>'
-callback({
-    valid: true/false,
-    render: {
-        msg: '',
-        status: '',
-        other: '',
-        ...
-    }
-});
-```
