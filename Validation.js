@@ -1,5 +1,5 @@
 /**
- * Validation
+ * Avowal - TODO: update name to Avowal
  * @author Derek Cuevas
  */
 
@@ -8,13 +8,13 @@
 
     var root = this;
 
-    var forEvery = function (obj, fun) {
+    function forEvery(obj, fun) {
         Object.keys(obj).forEach(function (key) {
             fun(key, obj[key]);
         });
-    };
+    }
 
-    var asyncForEvery = function (obj, fun, done) {
+    function asyncForEvery(obj, fun, done) {
         var keys = Object.keys(obj);
         var count = 0;
 
@@ -26,29 +26,29 @@
                 }
             });
         });
-    };
+    }
 
-    var render = function (template, obj) {
+    function render(template, obj) {
         return template.replace(/\{\{(.+?)\}\}/g, function (_, prop) {
             return obj[prop];
         });
-    };
+    }
 
-    var fail = function (thing) {
-        throw new Error("Validation Error: " + thing);
-    };
+    function fail(thing) {
+        throw new Error('Avowal Error => ' + thing);
+    }
 
-    function Validation(options, spec) {
-        options = options || {};
-        options.templates = options.templates || {};
+    function Validation(options) {
+        var opts = options || {};
+        opts.templates = opts.templates || {};
 
-        if (!options.name) {
+        if (!opts.name) {
             fail('Form name needed.');
         }
 
-        this.form = document.querySelector('form[name=' + options.name + ']');
+        this.form = document.querySelector('form[name=' + opts.name + ']');
         if (!this.form) {
-            fail('Form "' + options.name + '" not found.');
+            fail('Form "' + opts.name + '" not found.');
         }
 
         this.state = {};
@@ -56,16 +56,12 @@
         this.lifeCycle = {};
 
         this.listeners = [];
-        this.validateOn = options.on || 'submit';
+        this.validateOn = opts.on || 'submit';
 
         this.templates = {
             success: options.templates.success || '',
-            error: options.templates.error || ''
+            error: options.templates.error || '',
         };
-
-        if (spec) {
-            this.delegate(spec);
-        }
     }
 
     Validation.prototype._showStatus = function (name, valid, message) {
@@ -76,7 +72,7 @@
         input.classList.add(valid ? 'success' : 'error');
 
         status.innerHTML = render(valid ? this.templates.success : this.templates.error, {
-            status: message
+            status: message,
         });
     };
 
@@ -124,6 +120,8 @@
                 fail('Input "' + name + '" not found.');
             }
 
+            // TODO: require that lifeCycle.validate exists
+
             this.cache[name] = input;
             this.state[name] = false;
             this.lifeCycle[name] = lifeCycle;
@@ -146,7 +144,7 @@
         var status = input.parentNode.querySelector('.status-message');
 
         if (clear) {
-            input.value = "";
+            input.value = '';
         }
 
         if (lifeCycle.init) {
@@ -172,7 +170,7 @@
 
     Validation.prototype.validateAll = function (cb) {
         var allValid = true;
-        cb = cb || function () {};
+        var callback = cb || function () {};
 
         asyncForEvery(this.state, function (name, _, done) {
             var input = this.cache[name];
@@ -190,7 +188,7 @@
             }.bind(this));
 
         }.bind(this), function () {
-            cb(allValid);
+            callback(allValid);
         });
     };
 
@@ -229,9 +227,8 @@
     // Node.js (CommonJS)
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = Validation;
-    }
     // included directly via <script> tag
-    else {
+    } else {
         root.Validation = Validation;
     }
 
