@@ -1,4 +1,4 @@
-# Validation
+# Avowal
 Super lightweight zero dependency optionally asynchronous JavaScript form validation framework (phew!).
 
 A lot of JavaScript form validation frameworks aim to validate any and every possible set of input data. For example, all types of numeric input (ranges, phone numbers), string input (email addresses), ect.
@@ -109,6 +109,7 @@ particle.on('submit', function (e) {
 Examples of the form validation can be found in /examples. There are two examples, a particle editor (/particle) and a sign up form (/signup).
 
 ## To do
+- replace jslint with eslint, add .eslintrc
 - documentation work
 - consider rewriting in es6 w/babel
 - make rendering templates optional
