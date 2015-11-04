@@ -15,7 +15,7 @@ More documentation can be found in the doc/ directory. Work in Progress (see Tod
 Clone or 'npm install' this repository.
 
 ```sh
-git clone https://github.com/DerekCuevas/Validation.git
+git clone https://github.com/DerekCuevas/avowal.git
 ```
 
 ```sh
@@ -25,11 +25,11 @@ npm install --save git+https://github.com/DerekCuevas/avowal.git
 Require with commonJS (browserify) or include directly via a script tag.
 
 ```javascript
-var Validation = require('Validation');
+var Avowal = require('Avowal');
 ```
 
 ```html
-<script src="Validation.js"></script>
+<script src="Avowal.js"></script>
 ```
 
 ## Basic use
@@ -37,13 +37,13 @@ var Validation = require('Validation');
 ```javascript
 
 // create a new instance
-var particle = new Validation({
+var particle = new Avowal({
     name: 'particle',
     on: 'input',
     templates: {
         success: '<p class="success">{{status}}</p>',
-        error: '<p class="error">{{status}}</p>'
-    }
+        error: '<p class="error">{{status}}</p>',
+    },
 });
 
 // attach a delegate
@@ -55,7 +55,7 @@ particle.delegate({
         // OPTIONAL
         // Specify a form input event to validate on. (input, blur, change, ...)
         // For consistency use the constructors options.on value instead.
-        on: ''
+        on: '',
 
         // OPTIONAL
         // init is called once when the form is mounted, and after every reset
@@ -116,7 +116,7 @@ particle.delegate({
                 return '#' + color;
             }
             return color;
-        }
+        },
     },
     ...
 });

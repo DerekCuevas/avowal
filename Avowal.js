@@ -117,10 +117,12 @@
             var input = this.form.querySelector('[name=' + name + ']');
 
             if (!input) {
-                fail('Input "' + name + '" not found.');
+                fail('Input "' + name + '" not found in form "' + this.form.name + '".');
             }
 
-            // TODO: require that lifeCycle.validate exists
+            if (!lifeCycle.validate) {
+                fail('Missing "validate" method on input "' + name + '".');
+            }
 
             this.cache[name] = input;
             this.state[name] = false;
