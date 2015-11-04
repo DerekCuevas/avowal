@@ -32,104 +32,132 @@ var Avowal = require('Avowal');
 <script src="Avowal.js"></script>
 ```
 
-## Basic use
+## Using it
+
+Create a Avowal instance. It makes sense to name the instance the same as the form.
 
 ```javascript
-
-// create a new instance
 var particle = new Avowal({
+
+    // The name attribute of the form as specified by  <form name='particle' ... ></form>.
     name: 'particle',
+
+    // The validation event (common: 'input', 'blur', 'change', ...).
     on: 'input',
+
+    // handlebars like HTML templates to be rendered against each input.
+    // These will render in a div with class name of 'status-message' closest to the input.
+    // (this might change sometime in the future...)
     templates: {
-        success: '<p class="success">{{status}}</p>',
-        error: '<p class="error">{{status}}</p>',
+        success: 'template.success',
+        error: 'template.error',
     },
 });
+```
 
-// attach a delegate
+## Add a delegate
+
+The delegate function accepts a specification object that describes the form and how to validate it. The specification object's top level keys map to input names in the form.
+
+```javascript
 particle.delegate({
-
-    // specify a lifecycle object for each input in the form
-    color: {
-
-        // OPTIONAL
-        // Specify a form input event to validate on. (input, blur, change, ...)
-        // For consistency use the constructors options.on value instead.
-        on: '',
-
-        // OPTIONAL
-        // init is called once when the form is mounted, and after every reset
-        // of the form. The input DOM ref is passed in as an arg.
-        init: function (input) {
-            input.focus();
-
-            // using the lifecycle object to cache DOM nodes
-            this.input = input;
-            this.colorPreview = document.getElementById('color-preview');
-
-            this.input.style.width = '100%';
-            this.colorPreview.style.display = 'none';
-        },
-
-        // REQUIRED
-        // validate accepts two params, the current value of the input and a
-        // callback function. Pass the result of the validation back through the
-        // callback. The callback has the following signature - callback(valid, message)
-        validate: function (color, callback) {
-            var valid = /^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i.test(color);
-
-            if (color.length === 0) {
-                callback(false, 'The color is required.');
-            } else if (!valid) {
-                callback(false, 'The color entered is an invalid hex color.');
-            } else {
-                callback(true, 'The color looks good.');
-            }
-        },
-
-        // OPTIONAL
-        // whenValid gets called whenever the validate function above returns true.
-        // The value of the input is passed in as an arg.
-        whenValid: function (color) {
-            this.input.style.width = '85%';
-            this.colorPreview.style.display = 'inline';
-            this.colorPreview.style.backgroundColor = color;
-        },
-
-        // OPTIONAL
-        // whenInvalid gets called whenever the validate function above returns false.
-        // The value of the input is passed in as an arg.
-        whenInvalid: function (color) {
-            this.input.style.width = '100%';
-            this.colorPreview.style.display = 'none';
-        },
-
-        // OPTIONAL
-        // Called on input, this function can be used to modify the input
-        // real time as the user types. The old value of the input is passed in as an arg.
-        // The new value should be returned.
-        transform: function (color) {
-            if (color.length === 0) {
-                return color;
-            }
-            if (color.indexOf('#') !== 0) {
-                return '#' + color;
-            }
-            return color;
-        },
-    },
+    color: {/* life cycle object for the 'color' input */},
+    radius: {/* life cycle object for the 'radius' input */},
     ...
 });
+```
 
-particle.on('submit', function (e) {
-    e.preventDefault();
+## The life cycle object
 
-    particle.validateAll(function (valid) {
-        if (valid) {
-            draw(particle.values());
-        }
-    });
-});
+Each input can specify a life cycle object, the bare minimum life cycle object will include the validate method only. Below is a bare minimum life cycle object.
+
+```javascript
+color: {
+
+    // The only required life cycle method, 'validate' accepts two parameters,
+    // the current value of the input and a callback function.
+    // The callback accepts two required values, a boolean (valid / invalid) and
+    // a message to be rendered in one of your templates under the input.
+    // If valid == true, the success template will be rendered. If valid == false
+    // the error template will be rendered.
+    // Must return the state of the value with the callback as show below.
+    validate: function (val, cb) {
+        cb(true, 'The hex color looks valid.');
+    },
+}
+```
+
+A complete life cycle object with all possible life cycle events specified.
+
+```javascript
+color: {
+
+    // A form input event to validate on. (input, blur, change, ...)
+    // For consistency use the constructors options.on value instead.
+    on: '',
+
+    // Called just before any events are bound to the input,
+    // the input DOM ref is passed in as an argument.
+    init: function (input) {...},
+
+    // The main validation function (documented above).
+    validate: function (val, cb) {...},
+
+    // called whenever validate returns true
+    whenValid: function (val) {...},
+
+    // called whenever validate returns false
+    whenInvalid: function (val) {...},
+
+    // transforms the value to the returned value as the user types
+    // fires on 'input' event
+    transform: function (val) {...}
+}
+```
+## Top level API (Documentation in progress)
+
+delegate
+```javascript
+// Delegates control of a form to the validator. The spec object's keys
+// correspond to the name attributes of the form's inputs. The
+// values are the life cycle objects for the matched inputs.
+Validation.prototype.delegate = function (spec) {...}
+```
+
+reset
+```javascript
+// resets the state of the form
+Validation.prototype.reset = function (clear) {...}
+```
+
+resetInput
+```javascript
+Validation.prototype.resetInput = function (name) {...}
+```
+
+isValid
+```javascript
+Validation.prototype.isValid = function () {...}
+```
+
+validateAll
+```javascript
+Validation.prototype.validateAll = function (callback) {...}
+```
+
+on
+```javascript
+Validation.prototype.on = function (target, fun) {...}
+```
+
+values
+```javascript
+Validation.prototype.values = function () {...}
+```
+
+setValues
+```javascript
+Validation.prototype.setValues = function (values)
 ```
 
 ## Examples
