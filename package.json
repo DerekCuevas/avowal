@@ -1,24 +1,25 @@
 {
-  "name": "Validation",
+  "name": "Avowal",
   "version": "1.0.0",
   "description": "async js form validation",
-  "main": "Validation.js",
+  "main": "Avowal.js",
   "directories": {
-    "examples": "examples"
+    "examples": "examples",
+    "doc": "documentation"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DerekCuevas/Validation.git"
+    "url": "git+https://github.com/DerekCuevas/avowal.git"
   },
   "author": "Derek Cuevas",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DerekCuevas/Validation/issues"
+    "url": "https://github.com/DerekCuevas/avowal/issues"
   },
-  "homepage": "https://github.com/DerekCuevas/Validation#readme",
+  "homepage": "https://github.com/DerekCuevas/avowal#readme",
   "devDependencies": {
     "eslint": "^1.8.0",
     "eslint-config-airbnb": "^0.1.0"

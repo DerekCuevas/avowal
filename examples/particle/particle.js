@@ -30,13 +30,13 @@
         return ret;
     };
 
-    var particle = new Validation({
+    var particle = new Avowal({
         name: 'particle',
         on: 'input',
         templates: {
             success: document.querySelector('template.success').innerHTML,
-            error: document.querySelector('template.error').innerHTML
-        }
+            error: document.querySelector('template.error').innerHTML,
+        },
     });
 
     particle.delegate({
@@ -79,33 +79,33 @@
                     return '#' + color;
                 }
                 return color;
-            }
+            },
         },
         radius: {
             validate: function (radius, callback) {
                 var valid = validateSize(radius, 0, window.innerWidth / 2, 'radius');
                 callback(valid.valid, valid.message);
-            }
+            },
         },
         x: {
             validate: function (x, callback) {
                 var valid = validateSize(x, -1, window.innerWidth, 'x position');
                 callback(valid.valid, valid.message);
-            }
+            },
         },
         y: {
             validate: function (y, callback) {
                 var valid = validateSize(y, -1, window.innerHeight, 'y position');
                 callback(valid.valid, valid.message);
-            }
-        }
+            },
+        },
     });
 
-    var pixelize = function (size) {
+    function pixelize(size) {
         return size + 'px';
-    };
+    }
 
-    var draw = function (p) {
+    function draw(p) {
         var newParticle = document.createElement('div');
 
         newParticle.style.position = 'absolute';
@@ -120,7 +120,7 @@
 
         particles.appendChild(newParticle);
         return newParticle;
-    };
+    }
 
     particle.on('change', function () {
         if (particle.isValid()) {

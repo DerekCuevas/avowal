@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Particle</title>
-    <link rel="stylesheet" type="text/css" href="css/base.css">
-    <link rel="stylesheet" 
+    <link rel="stylesheet" type="text/css" href="base.css">
+    <link rel="stylesheet"
         href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -11,23 +11,23 @@
         <h3>Edit Particle</h3>
         <ul>
             <li>
-                <input type="text" name="color" 
+                <input type="text" name="color"
                     placeholder="Enter Hex Color ( ex. #abc )">
                 <span id="color-preview"></span>
                 <div class="status-message"></div>
             </li>
             <li>
-                <input type="number" step="10" name="radius" 
+                <input type="number" step="10" name="radius"
                     placeholder="Radius">
                 <div class="status-message"></div>
             </li>
             <li>
-                <input type="number" step="10" name="x" 
+                <input type="number" step="10" name="x"
                     placeholder="x position">
                 <div class="status-message"></div>
             </li>
             <li>
-                <input type="number" step="10" name="y" 
+                <input type="number" step="10" name="y"
                     placeholder="y position">
                 <div class="status-message"></div>
             </li>
@@ -47,20 +47,20 @@
 
     <!-- client side templates for the validator -->
     <template class="success">
-        <!--<div class="success">
-            <i class="fa fa-check"></i> 
-            {{status}}
-        </div>-->
-    </template>
-
-    <template class="error">
-        <div class="error">
-            <i class="fa fa-exclamation"></i> 
+        <div class="success">
+            <i class="fa fa-check"></i>
             {{status}}
         </div>
     </template>
 
-    <script src="../../Validation.js"></script>
-    <script src="js/particle.js"></script>
+    <template class="error">
+        <div class="error">
+            <i class="fa fa-exclamation"></i>
+            {{status}}
+        </div>
+    </template>
+
+    <script src="../../Avowal.js"></script>
+    <script src="particle.js"></script>
 </body>
 </html>

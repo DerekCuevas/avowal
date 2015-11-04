@@ -1,5 +1,5 @@
 /**
- * Avowal - TODO: update name to Avowal
+ * Avowal - small async form validation framework
  * @author Derek Cuevas
  */
 
@@ -38,7 +38,7 @@
         throw new Error('Avowal Error => ' + thing);
     }
 
-    function Validation(options) {
+    function Avowal(options) {
         var opts = options || {};
         opts.templates = opts.templates || {};
 
@@ -64,7 +64,7 @@
         };
     }
 
-    Validation.prototype._showStatus = function (name, valid, message) {
+    Avowal.prototype._showStatus = function (name, valid, message) {
         var input = this.cache[name];
         var status = input.parentNode.querySelector('.status-message');
 
@@ -76,7 +76,7 @@
         });
     };
 
-    Validation.prototype._validate = function (name) {
+    Avowal.prototype._validate = function (name) {
         var lifeCycle = this.lifeCycle[name];
         var input = this.cache[name];
 
@@ -93,7 +93,7 @@
         }.bind(this));
     };
 
-    Validation.prototype._initLifeCycle = function (name, on) {
+    Avowal.prototype._initLifeCycle = function (name, on) {
         var lifeCycle = this.lifeCycle[name];
         var input = this.cache[name];
 
@@ -112,7 +112,7 @@
         }.bind(this));
     };
 
-    Validation.prototype.delegate = function (spec) {
+    Avowal.prototype.delegate = function (spec) {
         forEvery(spec, function (name, lifeCycle) {
             var input = this.form.querySelector('[name=' + name + ']');
 
@@ -132,13 +132,13 @@
         }.bind(this));
     };
 
-    Validation.prototype.reset = function (clear) {
+    Avowal.prototype.reset = function (clear) {
         forEvery(this.state, function (name) {
             this.resetInput(name, clear);
         }.bind(this));
     };
 
-    Validation.prototype.resetInput = function (name, clear) {
+    Avowal.prototype.resetInput = function (name, clear) {
         var input = this.cache[name];
         var lifeCycle = this.lifeCycle[name];
         var status = input.parentNode.querySelector('.status-message');
@@ -157,7 +157,7 @@
         this._notifyChange();
     };
 
-    Validation.prototype.isValid = function () {
+    Avowal.prototype.isValid = function () {
         var allValid = true;
 
         forEvery(this.state, function (_, valid) {
@@ -168,7 +168,7 @@
         return allValid;
     };
 
-    Validation.prototype.validateAll = function (cb) {
+    Avowal.prototype.validateAll = function (cb) {
         var allValid = true;
         var callback = cb || function () {};
 
@@ -192,13 +192,13 @@
         });
     };
 
-    Validation.prototype._notifyChange = function () {
+    Avowal.prototype._notifyChange = function () {
         this.listeners.forEach(function (listener) {
             listener(this.state);
         }.bind(this));
     };
 
-    Validation.prototype.on = function (target, fun) {
+    Avowal.prototype.on = function (target, fun) {
         if (target === 'change') {
             this.listeners.push(fun);
         } else {
@@ -206,7 +206,7 @@
         }
     };
 
-    Validation.prototype.values = function () {
+    Avowal.prototype.values = function () {
         var vals = {};
         forEvery(this.cache, function (name, input) {
             vals[name] = input.value;
@@ -214,7 +214,7 @@
         return vals;
     };
 
-    Validation.prototype.setValues = function (values) {
+    Avowal.prototype.setValues = function (values) {
         forEvery(this.cache, function (name, input) {
             if (!values[name]) {
                 return;
@@ -226,10 +226,10 @@
 
     // Node.js (CommonJS)
     if (typeof module !== 'undefined' && module.exports) {
-        module.exports = Validation;
+        module.exports = Avowal;
     // included directly via <script> tag
     } else {
-        root.Validation = Validation;
+        root.Avowal = Avowal;
     }
 
 }).call(this);
