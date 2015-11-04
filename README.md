@@ -45,19 +45,19 @@ var particle = new Avowal({
     // The validation event (common: 'input', 'blur', 'change', ...).
     on: 'input',
 
-    // handlebars like HTML templates to be rendered against each input.
+    // 'handlebars like' HTML templates to be rendered against each input.
     // These will render in a div with class name of 'status-message' closest to the input.
     // (this might change sometime in the future...)
     templates: {
-        success: 'template.success',
-        error: 'template.error',
+        success: '<p class="success">{{status}}</p>',
+        error: '<p class="error">{{status}}</p>',
     },
 });
 ```
 
 ## Add a delegate
 
-The delegate function accepts a specification object that describes the form and how to validate it. The specification object's top level keys map to input names in the form.
+The delegate function accepts a specification object that describes the form and how to validate it. The specification object's top level keys map to input name attributes in the form.
 
 ```javascript
 particle.delegate({
@@ -121,50 +121,50 @@ delegate
 // Delegates control of a form to the validator. The spec object's keys
 // correspond to the name attributes of the form's inputs. The
 // values are the life cycle objects for the matched inputs.
-Validation.prototype.delegate = function (spec) {...}
+Avowal.prototype.delegate = function (spec) {...}
 ```
 
 reset
 ```javascript
 // resets the state of the form
-Validation.prototype.reset = function (clear) {...}
+Avowal.prototype.reset = function (clear) {...}
 ```
 
 resetInput
 ```javascript
-Validation.prototype.resetInput = function (name) {...}
+Avowal.prototype.resetInput = function (name) {...}
 ```
 
 isValid
 ```javascript
-Validation.prototype.isValid = function () {...}
+Avowal.prototype.isValid = function () {...}
 ```
 
 validateAll
 ```javascript
-Validation.prototype.validateAll = function (callback) {...}
+Avowal.prototype.validateAll = function (callback) {...}
 ```
 
 on
 ```javascript
-Validation.prototype.on = function (target, fun) {...}
+Avowal.prototype.on = function (target, fun) {...}
 ```
 
 values
 ```javascript
-Validation.prototype.values = function () {...}
+Avowal.prototype.values = function () {...}
 ```
 
 setValues
 ```javascript
-Validation.prototype.setValues = function (values)
+Avowal.prototype.setValues = function (values)
 ```
 
 ## Examples
-Examples of the form validation can be found in /examples. There are two examples, a particle editor (/particle) and a sign up form (/signup).
+Examples can be found in /examples. There are two examples, a particle editor (/particle) and a sign up form (/signup).
 
 ## To do
-- documentation work
-- make rendering templates optional?
-- better status-message support / cache status-message ref (re-work this)
-- add getState / setState methods
+- [x] documentation work
+- [ ] make rendering templates optional?
+- [ ] better status-message support / cache status-message ref (re-work this)
+- [ ] add getState / setState methods
