@@ -1,4 +1,4 @@
 node_modules
 ./examples/signup/node_modules
-./examples/signup/public/js/bundle.js
+./examples/signup/public/bundle.js
 .DS_Store

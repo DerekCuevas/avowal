@@ -1,16 +1,12 @@
-/**
- * a micro rest api / server for the signup form
- */
-'use strict';
-
 var express = require('express');
 var bodyParser = require('body-parser');
 
 var app = express();
 
 var users = [
+    {username: '@batman', user: 'Bruce Wayne'},
+    {username: '@superman', user: 'Clark Kent'},
     {username: '@jdoe', user: 'John Doe'},
-    {username: '@janed', user: 'Jane Doe'}
 ];
 
 app.set('port', process.env.PORT || 3000);
@@ -21,25 +17,25 @@ app.get('/users', function (req, res) {
     res.json(users);
 });
 
-app.get('/available', function (req, res) {
+app.post('/users', function (req, res) {
+    users.push({
+        username: req.body.username,
+        user: req.body.first + ' ' + req.body.last,
+    });
+    res.redirect(303, '/users');
+});
+
+app.get('/users/available', function (req, res) {
     var username = req.query.username;
 
     var count = users.filter(function (user) {
         return user.username === username;
     }).length;
 
-    // setting a more realistic delay, don't do this in production
+    // setting a more realistic delay for example purposes
     setTimeout(function () {
         res.json(count === 0);
     }, 250);
-});
-
-app.post('/signup', function (req, res) {
-    users.push({
-        username: req.body.username,
-        user: req.body.first + ' ' + req.body.last
-    });
-    res.redirect(303, '/users');
 });
 
 app.listen(app.get('port'), function () {

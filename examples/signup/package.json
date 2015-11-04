@@ -4,14 +4,14 @@
   "description": "An example of the form validator",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "browserify -d signup.js > public/js/bundle.js",
-    "watch-js": "watchify signup.js -o public/js/bundle.js -dv",
+    "build-js": "browserify -d signup.js > public/bundle.js",
+    "watch-js": "watchify signup.js -o public/bundle.js -dv",
     "start": "npm run build-js && node server.js"
   },
   "author": "Derek Cuevas",
   "license": "MIT",
   "dependencies": {
+    "Avowal": "git+https://github.com/DerekCuevas/avowal.git",
     "body-parser": "^1.13.2",
     "express": "^4.13.1",
     "jquery": "^2.1.4"

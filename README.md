@@ -19,10 +19,10 @@ git clone https://github.com/DerekCuevas/Validation.git
 ```
 
 ```sh
-npm install git+https://github.com/DerekCuevas/Validation.git
+npm install --save git+https://github.com/DerekCuevas/avowal.git
 ```
 
-Require with commonJS (Node / browserify) or include directly via a script tag.
+Require with commonJS (browserify) or include directly via a script tag.
 
 ```javascript
 var Validation = require('Validation');
