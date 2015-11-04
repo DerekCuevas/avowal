@@ -107,7 +107,7 @@ particle.delegate({
         // OPTIONAL
         // Called on input, this function can be used to modify the input
         // real time as the user types. The old value of the input is passed in as an arg.
-        // the new value should be returned.
+        // The new value should be returned.
         transform: function (color) {
             if (color.length === 0) {
                 return color;
