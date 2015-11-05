@@ -114,7 +114,7 @@ color: {
     transform: function (val) {...}
 }
 ```
-## Top level API (Documentation in progress)
+## Top level API
 
 Avowal
 ```javascript
@@ -161,7 +161,7 @@ Avowal.prototype.reset = function (clear) {...}
 resetInput
 ```javascript
 /**
- * Resets a given inputs validation state based on the
+ * Resets a given input's validation state based on the
  * name attribute of the input.
  *
  * If clear is 'truthy' the value of the input will also be reset.
@@ -190,9 +190,9 @@ validateAll
  *
  * Returns the status through the callback function.
  *
- * @param  {Function} cb [description]
+ * @param  {Function} callback [function (valid) {...}]
  */
-Avowal.prototype.validateAll = function (cb) {...}
+Avowal.prototype.validateAll = function (callback) {...}
 ```
 
 on

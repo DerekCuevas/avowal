@@ -196,7 +196,7 @@
     };
 
     /**
-     * Resets a given inputs validation state based on the
+     * Resets a given input's validation state based on the
      * name attribute of the input.
      *
      * If clear is 'truthy' the value of the input will also be reset.
@@ -245,11 +245,11 @@
      *
      * Returns the status through the callback function.
      *
-     * @param  {Function} cb [description]
+     * @param  {Function} callback [function (valid) {...}]
      */
-    Avowal.prototype.validateAll = function (cb) {
+    Avowal.prototype.validateAll = function (callback) {
         var allValid = true;
-        var callback = cb || function () {};
+        var cb = callback || function () {};
 
         asyncForEvery(this.state, function (name, _, done) {
             var input = this.cache[name];
@@ -267,7 +267,7 @@
             }.bind(this));
 
         }.bind(this), function () {
-            callback(allValid);
+            cb(allValid);
         });
     };
 
