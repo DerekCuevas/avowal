@@ -116,47 +116,119 @@ color: {
 ```
 ## Top level API (Documentation in progress)
 
+Avowal
+```javascript
+/**
+ * Constructor function
+ *
+ * required options:
+ *     name (form name attribute)
+ *
+ * optional options:
+ *     on (validation event),
+ *     templates ('handlebars like' placeholder for form messages)
+ *
+ * @param {Object} options
+ */
+function Avowal(options) {...}
+```
+
 delegate
 ```javascript
-// Delegates control of a form to the validator. The spec object's keys
-// correspond to the name attributes of the form's inputs. The
-// values are the life cycle objects for the matched inputs.
+/**
+ * Delegates control of a form to the validator.
+ *
+ * The spec object's keys correspond to the name attributes
+ * of the form's inputs. The values are the lifeCycle
+ * objects for the matched inputs.
+ *
+ * @param  {Object} spec [{name: lifeCycle, ...}]
+ */
 Avowal.prototype.delegate = function (spec) {...}
 ```
 
 reset
 ```javascript
-// resets the state of the form
+/**
+ * Resets the validation state of the form.
+ * If clear is 'truthy' the values in the form will also be cleared.
+ *
+ * @param {Boolean} clear
+ */
 Avowal.prototype.reset = function (clear) {...}
 ```
 
 resetInput
 ```javascript
-Avowal.prototype.resetInput = function (name) {...}
+/**
+ * Resets a given inputs validation state based on the
+ * name attribute of the input.
+ *
+ * If clear is 'truthy' the value of the input will also be reset.
+ *
+ * @param {String} name
+ * @param {Boolean} clear
+ */
+Avowal.prototype.resetInput = function (name, clear) {...}
 ```
 
 isValid
 ```javascript
+/**
+ * Evaluates the current form state (does not execute the validate functions).
+ *
+ * @return {Boolean}
+ */
 Avowal.prototype.isValid = function () {...}
 ```
 
 validateAll
 ```javascript
-Avowal.prototype.validateAll = function (callback) {...}
+/**
+ * Evaluates all form inputs, waits for all 'N' inputs to finish
+ * validating before executing the callback. (does execute the validate functions)
+ *
+ * Returns the status through the callback function.
+ *
+ * @param  {Function} cb [description]
+ */
+Avowal.prototype.validateAll = function (cb) {...}
 ```
 
 on
 ```javascript
+/**
+ * Allows the setting of events on the form.
+ *
+ * The 'change' event is overridden to watch for changes of
+ * the values in the form.
+ *
+ * @param  {String} target
+ * @param  {Function} fun
+ */
 Avowal.prototype.on = function (target, fun) {...}
 ```
 
 values
 ```javascript
+/**
+ * Serializes the values in the form using the input cache.
+ *
+ * @return {Object} [object of {name => value}]
+ */
 Avowal.prototype.values = function () {...}
 ```
 
 setValues
 ```javascript
+/**
+ * Will update the values in the form.
+ *
+ * As a side effect, the validate function will be executed against
+ * any value changed.
+ *
+ * @param {Object} values [object of {name => value}]
+ */
 Avowal.prototype.setValues = function (values)
 ```
 
@@ -166,5 +238,5 @@ Examples can be found in /examples. There are two examples, a particle editor (/
 ## To do
 - [x] documentation work
 - [ ] make rendering templates optional?
-- [ ] better status-message support / cache status-message ref (re-work this)
+- [ ] better status-message support / cache 'status-message' ref
 - [ ] add getState / setState methods

@@ -78,7 +78,7 @@
 
     /**
      * Renders the 'message' under the input specified by 'name'.
-     * 
+     *
      * Will search for a DOM node with class '.status-message' to render
      * to (this might change soon). Will choose the template based
      * off of 'valid'.
@@ -187,7 +187,7 @@
      * Resets the validation state of the form.
      * If clear is 'truthy' the values in the form will also be cleared.
      *
-     * @param {Boolean} clear [description]
+     * @param  {Object} spec [{name: lifeCycle, ...}]
      */
     Avowal.prototype.reset = function (clear) {
         forEvery(this.state, function (name) {
@@ -201,8 +201,8 @@
      *
      * If clear is 'truthy' the value of the input will also be reset.
      *
-     * @param {String} name  [description]
-     * @param {Boolean} clear [description]
+     * @param {String} name
+     * @param {Boolean} clear
      */
     Avowal.prototype.resetInput = function (name, clear) {
         var input = this.cache[name];
@@ -226,7 +226,7 @@
     /**
      * Evaluates the current form state (does not execute the validate functions).
      *
-     * @return {Boolean} [description]
+     * @return {Boolean}
      */
     Avowal.prototype.isValid = function () {
         var allValid = true;
@@ -241,9 +241,9 @@
 
     /**
      * Evaluates all form inputs, waits for all 'N' inputs to finish
-     * validating before executing the callback.
+     * validating before executing the callback. (does execute the validate functions)
      *
-     * Returns the status thourgh the callback function.
+     * Returns the status through the callback function.
      *
      * @param  {Function} cb [description]
      */
@@ -286,8 +286,8 @@
      * The 'change' event is overridden to watch for changes of
      * the values in the form.
      *
-     * @param  {String} target [description]
-     * @param  {Function} fun    [description]
+     * @param  {String} target
+     * @param  {Function} fun
      */
     Avowal.prototype.on = function (target, fun) {
         if (target === 'change') {
@@ -313,7 +313,7 @@
     /**
      * Will update the values in the form.
      *
-     * As a side effect, the validate function will be executed agaist
+     * As a side effect, the validate function will be executed against
      * any value changed.
      *
      * @param {Object} values [object of {name => value}]
