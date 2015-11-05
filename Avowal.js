@@ -281,7 +281,7 @@
     };
 
     /**
-     * Allows the seting of events on the form.
+     * Allows the setting of events on the form.
      *
      * The 'change' event is overridden to watch for changes of
      * the values in the form.
