@@ -9,7 +9,7 @@ An arbitrary number of form inputs can be validated that require asynchronous va
 
 The API is 100% js based, DOM attributes are not used to validate data. There is support for rendering validation messages against form inputs with templates (see examples).
 
-More documentation can be found in the doc/ directory. Work in Progress (see Todo).
+Work in Progress (see Todo).
 
 ## Setup
 Clone or 'npm install' this repository.
@@ -39,14 +39,16 @@ Create a Avowal instance. It makes sense to name the instance the same as the fo
 ```javascript
 var particle = new Avowal({
 
-    // The name attribute of the form as specified by  <form name='particle' ... ></form>.
+    // The name attribute of the form as specified by  
+    // <form name='particle' ... ></form>.
     name: 'particle',
 
     // The validation event (common: 'input', 'blur', 'change', ...).
     on: 'input',
 
     // 'handlebars like' HTML templates to be rendered against each input.
-    // These will render in a div with class name of 'status-message' closest to the input.
+    // These will render in a div with class name of 'status-message'
+    // closest to the input.
     // (this might change sometime in the future...)
     templates: {
         success: '<p class="success">{{status}}</p>',
@@ -214,7 +216,7 @@ values
 /**
  * Serializes the values in the form using the input cache.
  *
- * @return {Object} [object of {name => value}]
+ * @return {Object} [object of {name: value}]
  */
 Avowal.prototype.values = function () {...}
 ```
@@ -227,7 +229,7 @@ setValues
  * As a side effect, the validate function will be executed against
  * any value changed.
  *
- * @param {Object} values [object of {name => value}]
+ * @param {Object} values [object of {name: value}]
  */
 Avowal.prototype.setValues = function (values)
 ```
