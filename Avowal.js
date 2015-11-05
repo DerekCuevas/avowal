@@ -38,6 +38,18 @@
         throw new Error('Avowal Error => ' + thing);
     }
 
+    /**
+     * Constructor function
+     *
+     * required options:
+     *     name (form name attribute)
+     *
+     * optional options:
+     *     on (validation event),
+     *     templates ('handlebars like' placeholder for form messages)
+     *
+     * @param {Object} options
+     */
     function Avowal(options) {
         var opts = options || {};
         opts.templates = opts.templates || {};
@@ -64,6 +76,15 @@
         };
     }
 
+    /**
+     * Renders the 'message' under the input specified by 'name'. Will search for a DOM
+     * node with class '.status-message' to render to (this might change soon). Will
+     * choose the template based off of 'valid'.
+     *
+     * @param  {String} name    [description]
+     * @param  {Boolean} valid   [description]
+     * @param  {String} message [description]
+     */
     Avowal.prototype._showStatus = function (name, valid, message) {
         var input = this.cache[name];
         var status = input.parentNode.querySelector('.status-message');
@@ -76,6 +97,12 @@
         });
     };
 
+    /**
+     * Validates the input specified by name, will update the validation state of
+     * the form (this.state) and also trigger rendering of the status message.
+     * This function will call the side effect lifeCycle methods 'whenValid' and 'whenInvalid'.
+     * @param  {String} name [description]
+     */
     Avowal.prototype._validate = function (name) {
         var lifeCycle = this.lifeCycle[name];
         var input = this.cache[name];
@@ -93,6 +120,12 @@
         }.bind(this));
     };
 
+    /**
+     * Attaches appropriate events to inputs in the form. Calles the init lifeCycle method.
+     * @param  {[type]} name [description]
+     * @param  {[type]} on   [description]
+     * @return {[type]}      [description]
+     */
     Avowal.prototype._initLifeCycle = function (name, on) {
         var lifeCycle = this.lifeCycle[name];
         var input = this.cache[name];
@@ -112,6 +145,12 @@
         }.bind(this));
     };
 
+    /**
+     * Delegates control of a form to the validator. The spec object's keys correspond
+     * to the name attributes of the form's inputs. The values are the lifeCycle
+     * objects for the matched inputs.
+     * @param  {Object} spec [description]
+     */
     Avowal.prototype.delegate = function (spec) {
         forEvery(spec, function (name, lifeCycle) {
             var input = this.form.querySelector('[name=' + name + ']');
@@ -129,17 +168,27 @@
             this.lifeCycle[name] = lifeCycle;
 
             input.setAttribute('autocomplete', 'off');
-
             this._initLifeCycle(name, lifeCycle.on ? lifeCycle.on : this.validateOn);
         }.bind(this));
     };
 
+    /**
+     * Resets the validation state of the form. If clear is 'truthy' the values
+     * in the form will also be cleared.
+     * @param {Boolean} clear [description]
+     */
     Avowal.prototype.reset = function (clear) {
         forEvery(this.state, function (name) {
             this.resetInput(name, clear);
         }.bind(this));
     };
 
+    /**
+     * Resets a given inputs validation state based on the name attribute of the
+     * input. If clear is 'truthy' the value of the input will also be reset.
+     * @param {String} name  [description]
+     * @param {Boolean} clear [description]
+     */
     Avowal.prototype.resetInput = function (name, clear) {
         var input = this.cache[name];
         var lifeCycle = this.lifeCycle[name];
@@ -159,6 +208,10 @@
         this._notifyChange();
     };
 
+    /**
+     * Evaluates the current form state (does not execute the validate functions).
+     * @return {Boolean} [description]
+     */
     Avowal.prototype.isValid = function () {
         var allValid = true;
 
@@ -170,6 +223,11 @@
         return allValid;
     };
 
+    /**
+     * Evaluates all form inputs, waits for all 'N' inputs to finish validating before
+     * executing the callback. Returns the status thourgh the callback function.
+     * @param  {Function} cb [description]
+     */
     Avowal.prototype.validateAll = function (cb) {
         var allValid = true;
         var callback = cb || function () {};
@@ -194,12 +252,21 @@
         });
     };
 
+    /**
+     * Executes all the listeners, passing them the current validation state.
+     */
     Avowal.prototype._notifyChange = function () {
         this.listeners.forEach(function (listener) {
             listener(this.state);
         }.bind(this));
     };
 
+    /**
+     * Allows the seting of events on the form. The 'change' event is overridden to
+     * watch for changes of the values in the form.
+     * @param  {String} target [description]
+     * @param  {Function} fun    [description]
+     */
     Avowal.prototype.on = function (target, fun) {
         if (target === 'change') {
             this.listeners.push(fun);
@@ -208,6 +275,11 @@
         }
     };
 
+    /**
+     * Serializes the values in the form using the input cache. Will return object
+     * of name => value.
+     * @return {Object} [description]
+     */
     Avowal.prototype.values = function () {
         var vals = {};
         forEvery(this.cache, function (name, input) {
@@ -216,6 +288,11 @@
         return vals;
     };
 
+    /**
+     * Will update the values in the form. As a side effect, the validate function
+     * will be executed agaist any value changed.
+     * @param {Object} values [description]
+     */
     Avowal.prototype.setValues = function (values) {
         forEvery(this.cache, function (name, input) {
             if (!values[name]) {
