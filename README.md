@@ -19,7 +19,7 @@ git clone https://github.com/DerekCuevas/avowal.git
 ```
 
 ```sh
-npm install --save git+https://github.com/DerekCuevas/avowal.git
+npm install --save avowal
 ```
 
 Require with commonJS (browserify) or include directly via a script tag.

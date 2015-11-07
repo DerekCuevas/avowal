@@ -8,7 +8,7 @@
 'use strict';
 
 var $ = require('jquery');
-var Avowal = require('Avowal');
+var Avowal = require('avowal');
 
 var $signup = $('form[name=signup]');
 var $status = $('.status');

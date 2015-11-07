@@ -11,7 +11,7 @@
   "author": "Derek Cuevas",
   "license": "MIT",
   "dependencies": {
-    "Avowal": "git+https://github.com/DerekCuevas/avowal.git",
+    "avowal": "^1.0.0",
     "body-parser": "^1.13.2",
     "express": "^4.13.1",
     "jquery": "^2.1.4"

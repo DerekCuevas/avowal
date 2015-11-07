@@ -1,12 +1,17 @@
 {
-  "name": "Avowal",
+  "name": "avowal",
   "version": "1.0.0",
   "description": "async js form validation",
   "main": "Avowal.js",
   "directories": {
-    "examples": "examples",
-    "doc": "documentation"
+    "examples": "examples"
   },
+  "keywords": [
+    "async",
+    "asynchronous",
+    "form",
+    "validation"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
