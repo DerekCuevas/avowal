@@ -78,11 +78,13 @@ color: {
 
     // The only required life cycle method, 'validate' accepts two parameters,
     // the current value of the input and a callback function.
-    // The callback accepts two required values, a boolean (valid / invalid) and
+    // The callback accepts two values, a boolean (valid / invalid) and
     // a message to be rendered in one of your templates under the input.
     // If valid == true, the success template will be rendered. If valid == false
     // the error template will be rendered.
     // Must return the state of the value with the callback as show below.
+    // Rendering is optional, if a message is not supplied to the callback render
+    // will not be called
     validate: function (val, cb) {
         cb(true, 'The hex color looks valid.');
     },
@@ -239,6 +241,6 @@ Examples can be found in /examples. There are two examples, a particle editor (/
 
 ## To do
 - [x] documentation work
-- [ ] make rendering templates optional?
+- [x] make rendering templates optional?
 - [ ] better status-message support / cache 'status-message' ref
 - [ ] add getState / setState methods
