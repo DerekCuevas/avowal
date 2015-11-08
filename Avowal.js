@@ -69,6 +69,10 @@
         var status = input.parentNode.querySelector('.status-message');
         var template = valid ? this.templates.success : this.templates.error;
 
+        if (!message) {
+            return;
+        }
+
         input.classList.remove('success', 'error');
         input.classList.add(valid ? 'success' : 'error');
 
@@ -83,11 +87,7 @@
 
         lifeCycle.validate(input.value, function (valid, message) {
             this.state[name] = valid;
-
-            if (message) {
-                this._showStatus(name, valid, message);
-            }
-
+            this._showStatus(name, valid, message);
             this._notifyChange();
 
             if (valid && lifeCycle.whenValid) {
@@ -185,13 +185,10 @@
 
             lifeCycle.validate(input.value, function (valid, message) {
                 this.state[name] = valid;
+                this._showStatus(name, valid, message);
 
                 if (!valid) {
                     allValid = false;
-                }
-
-                if (message) {
-                    this._showStatus(name, valid, message);
                 }
                 done();
             }.bind(this));
@@ -231,6 +228,10 @@
             input.value = values[name];
             this._validate(name);
         }.bind(this));
+    };
+
+    Avowal.prototype.getState = function () {
+        return this.state;
     };
 
     // (CommonJS)

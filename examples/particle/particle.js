@@ -1,5 +1,5 @@
 /**
- * Basic Aysnc form validation example.
+ * Basic form validation example.
  * Particle Editor.
  *
  * @author Derek Cuevas

@@ -83,8 +83,8 @@ color: {
     // If valid == true, the success template will be rendered. If valid == false
     // the error template will be rendered.
     // Must return the state of the value with the callback as show below.
-    // Rendering is optional, if a message is not supplied to the callback render
-    // will not be called
+    // Rendering is optional, if a message is not supplied to the callback the
+    // templates will not be rendered.
     validate: function (val, cb) {
         cb(true, 'The hex color looks valid.');
     },
@@ -107,14 +107,14 @@ color: {
     // The main validation function (documented above).
     validate: function (val, cb) {...},
 
-    // called whenever validate returns true
+    // called whenever validate returns true.
     whenValid: function (val) {...},
 
-    // called whenever validate returns false
+    // called whenever validate returns false.
     whenInvalid: function (val) {...},
 
     // transforms the value to the returned value as the user types
-    // fires on 'input' event
+    // fires on 'input' event.
     transform: function (val) {...}
 }
 ```
@@ -146,7 +146,7 @@ delegate
  * of the form's inputs. The values are the lifeCycle
  * objects for the matched inputs.
  *
- * @param  {Object} spec [{name: lifeCycle, ...}]
+ * @param  {Object} spec {name: lifeCycle}
  */
 Avowal.prototype.delegate = function (spec) {...}
 ```
@@ -194,7 +194,7 @@ validateAll
  *
  * Returns the status through the callback function.
  *
- * @param  {Function} callback [function (valid) {...}]
+ * @param  {Function} callback function (valid) {...}
  */
 Avowal.prototype.validateAll = function (callback) {...}
 ```
@@ -218,7 +218,7 @@ values
 /**
  * Serializes the values in the form using the input cache.
  *
- * @return {Object} [object of {name: value}]
+ * @return {Object} {name: value}
  */
 Avowal.prototype.values = function () {...}
 ```
@@ -231,16 +231,24 @@ setValues
  * As a side effect, the validate function will be executed against
  * any value changed.
  *
- * @param {Object} values [object of {name: value}]
+ * @param {Object} values {name: value}
  */
-Avowal.prototype.setValues = function (values)
+Avowal.prototype.setValues = function (values) {...}
+```
+
+getState
+```javascript
+/**
+ * returns the current validation state
+ * @return {Object} {name: Boolean}
+ */
+Avowal.prototype.getState = function () {...}
 ```
 
 ## Examples
 Examples can be found in /examples. There are two examples, a particle editor (/particle) and a sign up form (/signup).
 
 ## To do
-- [x] documentation work
+- [ ] document source
 - [x] make rendering templates optional?
 - [ ] better status-message support / cache 'status-message' ref
-- [ ] add getState / setState methods
