@@ -25,7 +25,7 @@ npm install --save avowal
 Require with commonJS (browserify) or include directly via a script tag.
 
 ```javascript
-var Avowal = require('Avowal');
+var Avowal = require('avowal');
 ```
 
 ```html
