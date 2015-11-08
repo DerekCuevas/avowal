@@ -246,7 +246,7 @@ Avowal.prototype.getState = function () {...}
 ```
 
 ## Examples
-Examples can be found in /examples. There are two examples, a particle editor (/particle) and a sign up form (/signup).
+Examples can be found in /examples. There are three examples, an async example (/async), a particle editor (/particle) and a sign up form (/signup).
 
 ## To do
 - [ ] document source
