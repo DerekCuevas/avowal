@@ -1,6 +1,6 @@
 {
   "name": "avowal",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "async js form validation",
   "main": "Avowal.js",
   "directories": {
