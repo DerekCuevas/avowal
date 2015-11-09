@@ -61,7 +61,7 @@ async.on('submit', function (e) {
 
     async.validateAll(function (valid) {
         if (valid) {
-            status.innerHTML = check + ' Only now does the form send.';
+            status.innerHTML = check + ' Only now would the form send.';
         }
     });
 });
