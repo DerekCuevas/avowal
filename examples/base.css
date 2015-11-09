@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    width: 100%;
+    font-size: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(50, 50, 50);
+}
+
+h1 {
+    color: rgb(52, 73, 94);
+}
+
+ul li {
+    margin: 5px 0;
+}
+
+a {
+    font-size: 110%;
+    color: rgb(26, 188, 156);
+}
+
+a:hover {
+    color: rgb(149, 165, 166);
+}
+
+#container {
+    margin: 30px auto;
+    max-width: 800px;
+    font-size: 95%;
+    padding: 0 10px;
+}
