@@ -12,7 +12,7 @@ The API is 100% js based, DOM attributes are not used to validate data. There is
 Work in Progress (see Todo).
 
 ## Examples
-Examples can be found in /examples. There are three examples, an async example (/async), a particle editor (/particle) and a sign up form (/signup). Only /async and /particle are publish to gh-pages.
+Examples can be found in /examples. There are three examples, an async example (/async), a particle editor (/particle) and a sign up form (/signup). Only /async and /particle are published to gh-pages.
 
 go here: http://derekcuevas.github.io/avowal/
 
