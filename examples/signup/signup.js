@@ -142,7 +142,7 @@ signup.on('submit', function (e) {
             return;
         }
 
-        $.post('/users', signup.values(), function () {
+        $.post('/users', signup.getValues(), function () {
             var user = $user.val();
             var icon = '<i class="fa fa-smile-o"></i> ';
 

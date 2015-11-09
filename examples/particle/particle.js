@@ -127,7 +127,7 @@
             if (preview) {
                 particles.removeChild(preview);
             }
-            preview = draw(particle.values());
+            preview = draw(particle.getValues());
         }
     });
 
@@ -136,7 +136,7 @@
 
         particle.validateAll(function (valid) {
             if (valid) {
-                draw(particle.values());
+                draw(particle.getValues());
                 particle.reset(true);
             }
         });

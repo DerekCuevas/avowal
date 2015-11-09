@@ -212,7 +212,7 @@
         }
     };
 
-    Avowal.prototype.values = function () {
+    Avowal.prototype.getValues = function () {
         var vals = {};
         forEvery(this.cache, function (name, input) {
             vals[name] = input.value;

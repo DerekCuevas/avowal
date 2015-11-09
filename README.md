@@ -213,14 +213,14 @@ on
 Avowal.prototype.on = function (target, fun) {...}
 ```
 
-values
+getValues
 ```javascript
 /**
  * Serializes the values in the form using the input cache.
  *
  * @return {Object} {name: value}
  */
-Avowal.prototype.values = function () {...}
+Avowal.prototype.getValues = function () {...}
 ```
 
 setValues
