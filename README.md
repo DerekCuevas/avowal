@@ -14,7 +14,7 @@ Work in Progress (see Todo).
 ## Examples
 Examples can be found in /examples. There are three examples, an async example (/async), a particle editor (/particle) and a sign up form (/signup). Only /async and /particle are published to gh-pages.
 
-go here: http://derekcuevas.github.io/avowal/
+Go here: [http://derekcuevas.github.io/avowal/](http://derekcuevas.github.io/avowal/)
 
 ## Setup
 Clone or 'npm install' this repository.
