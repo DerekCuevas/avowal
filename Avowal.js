@@ -220,13 +220,16 @@
         return vals;
     };
 
-    Avowal.prototype.setValues = function (values) {
+    Avowal.prototype.setValues = function (values, validate) {
         forEvery(this.cache, function (name, input) {
             if (!values[name]) {
                 return;
             }
             input.value = values[name];
-            this._validate(name);
+
+            if (validate) {
+                this._validate(name);
+            }
         }.bind(this));
     };
 

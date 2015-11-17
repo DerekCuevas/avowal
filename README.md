@@ -234,11 +234,12 @@ setValues
  * Will update the values in the form.
  *
  * As a side effect, the validate function will be executed against
- * any value changed.
+ * any value changed if the validate flag is set to true.
  *
  * @param {Object} values {name: value}
+ * @param {Boolean} validate
  */
-Avowal.prototype.setValues = function (values) {...}
+Avowal.prototype.setValues = function (values, validate) {...}
 ```
 
 getState
@@ -251,6 +252,7 @@ Avowal.prototype.getState = function () {...}
 ```
 
 ## To do
+- [ ] add some unit tests
 - [ ] document source
 - [x] make rendering templates optional?
 - [ ] better status-message support / cache 'status-message' ref
