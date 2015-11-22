@@ -13,7 +13,7 @@
     "validation"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "eslint": "^1.8.0",
     "eslint-config-airbnb": "^0.1.0",
+    "expect": "^1.13.0",
     "gulp": "^3.9.0",
     "gulp-gh-pages": "^0.5.4"
   }

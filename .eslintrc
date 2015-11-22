@@ -11,5 +11,7 @@
     },
     "globals": {
         "Avowal": true,
+        "describe": true,
+        "it": true,
     }
 }
