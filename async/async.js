@@ -1,6 +1,6 @@
 'use strict';
 
-var async = new Avowal({
+var asyncForm = new Avowal({
     name: 'async',
     on: 'submit',
     templates: {
@@ -9,7 +9,7 @@ var async = new Avowal({
     },
 });
 
-async.delegate({
+asyncForm.delegate({
     step1: {
         init: function (input) {
             input.focus();
@@ -48,18 +48,18 @@ async.delegate({
     },
 });
 
-async.on('reset', function () {
+asyncForm.on('reset', function () {
     var status = document.getElementById('status');
     status.innerHTML = '';
-    async.reset(true);
+    asyncForm.reset(true);
 });
 
-async.on('submit', function (e) {
+asyncForm.on('submit', function (e) {
     var status = document.getElementById('status');
     var check = '<i class="fa fa-check"></i>';
     e.preventDefault();
 
-    async.validateAll(function (valid) {
+    asyncForm.validateAll(function (valid) {
         if (valid) {
             status.innerHTML = check + ' Only now would the form send.';
         }

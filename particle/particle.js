@@ -11,7 +11,16 @@
     var particles = document.getElementById('particles');
     var preview;
 
-    var validateSize = function (size, min, max, name) {
+    var particle = new Avowal({
+        name: 'particle',
+        on: 'input',
+        templates: {
+            success: document.querySelector('template.success').innerHTML,
+            error: document.querySelector('template.error').innerHTML,
+        },
+    });
+
+    function validateSize(size, min, max, name) {
         var ret = {};
 
         if (!size) {
@@ -28,16 +37,7 @@
             ret.message = 'The ' + name + ' looks good.';
         }
         return ret;
-    };
-
-    var particle = new Avowal({
-        name: 'particle',
-        on: 'input',
-        templates: {
-            success: document.querySelector('template.success').innerHTML,
-            error: document.querySelector('template.error').innerHTML,
-        },
-    });
+    }
 
     particle.delegate({
         color: {
