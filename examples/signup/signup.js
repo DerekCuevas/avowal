@@ -14,22 +14,32 @@ var $signup = $('form[name=signup]');
 var $status = $('.status');
 var $user = $signup.find('[name=username]');
 
-var isEmpty = function (value) {
+var signup = new Avowal({
+    name: 'signup',
+    on: 'input',
+    templates: {
+        success: $('template.success').html(),
+        error: $('template.error').html(),
+    },
+});
+
+function isEmpty(value) {
     return value.trim().length === 0;
-};
+}
 
-var validPass = function (password) {
+function validPass(password) {
     return /^\w{4,20}$/i.test(password);
-};
+}
 
-var titleCase = function (name) {
+function titleCase(name) {
     return name.replace(/\w\S*/g, function (str) {
         return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
     });
-};
+}
 
-var debounce = function (freq, fn, except) {
+function debounce(freq, fn, except) {
     var watch;
+
     return function () {
         var args = Array.prototype.slice.call(arguments);
         clearTimeout(watch);
@@ -41,16 +51,7 @@ var debounce = function (freq, fn, except) {
             fn.apply(null, args);
         }, freq);
     };
-};
-
-var signup = new Avowal({
-    name: 'signup',
-    on: 'input',
-    templates: {
-        success: $('template.success').html(),
-        error: $('template.error').html(),
-    },
-});
+}
 
 signup.delegate({
     first: {

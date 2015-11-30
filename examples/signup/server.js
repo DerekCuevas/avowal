@@ -35,7 +35,7 @@ app.get('/users/available', function (req, res) {
     // setting a more realistic delay for example purposes
     setTimeout(function () {
         res.json(count === 0);
-    }, 250);
+    }, 150);
 });
 
 app.listen(app.get('port'), function () {
