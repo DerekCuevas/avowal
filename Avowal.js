@@ -112,6 +112,7 @@
             });
         }
 
+        // FIXME: attach only one listener to form, catch bubbled up events from inputs
         input.addEventListener(on, function () {
             this._validate(name);
         }.bind(this));
