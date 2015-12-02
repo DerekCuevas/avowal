@@ -208,6 +208,7 @@
         }.bind(this));
     };
 
+    // FIXME: breaking change, rename 'change' to 'state-change' to avoid event conflict
     Avowal.prototype.on = function (target, fun) {
         if (target === 'change') {
             this.listeners.push(fun);
