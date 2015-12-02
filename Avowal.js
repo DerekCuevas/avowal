@@ -67,7 +67,10 @@
 
     Avowal.prototype._initEventDelegation = function (on) {
         this.form.addEventListener(on, function (e) {
-            this._validate(e.target.name);
+            var name = e.target.name;
+            if (this.state.hasOwnProperty(name)) {
+                this._validate(e.target.name);
+            }
         }.bind(this));
     };
 

@@ -59,6 +59,7 @@ asyncForm.on('submit', function (e) {
     var check = '<i class="fa fa-check"></i>';
     e.preventDefault();
 
+    // might be a good idea to disable the submit/reset buttons while validating
     asyncForm.validateAll(function (valid) {
         if (valid) {
             status.innerHTML = check + ' Only now would the form send.';
