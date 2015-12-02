@@ -35,7 +35,7 @@
     }
 
     function fail(thing) {
-        throw new Error('Avowal Error: ' + thing);
+        throw new Error('Avowal, ' + thing);
     }
 
     function Avowal(options) {
@@ -132,7 +132,7 @@
             }
 
             if (!lifeCycle.validate) {
-                fail('Missing "validate" method on input "' + name + '".');
+                fail('Missing "validate" method on input "' + name + '", ' + 'in form "' + this.form.name + '".');
             }
 
             this.cache[name] = input;

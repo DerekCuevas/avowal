@@ -35,7 +35,7 @@
     }
 
     function fail(thing) {
-        throw new Error('Avowal Error => ' + thing);
+        throw new Error('Avowal, ' + thing);
     }
 
     function Avowal(options) {
@@ -56,13 +56,23 @@
         this.lifeCycle = {};
 
         this.listeners = [];
-        this.validateOn = opts.on || 'submit';
 
         this.templates = {
             success: options.templates.success || '',
             error: options.templates.error || '',
         };
+
+        this._initEventDelegation(opts.on || 'input');
     }
+
+    Avowal.prototype._initEventDelegation = function (on) {
+        this.form.addEventListener(on, function (e) {
+            var name = e.target.name;
+            if (this.state.hasOwnProperty(name)) {
+                this._validate(e.target.name);
+            }
+        }.bind(this));
+    };
 
     Avowal.prototype._showStatus = function (name, valid, message) {
         var input = this.cache[name];
@@ -83,22 +93,22 @@
 
     Avowal.prototype._validate = function (name) {
         var lifeCycle = this.lifeCycle[name];
-        var input = this.cache[name];
+        var value = this.cache[name].value;
 
-        lifeCycle.validate(input.value, function (valid, message) {
+        lifeCycle.validate(value, function (valid, message) {
             this.state[name] = valid;
             this._showStatus(name, valid, message);
             this._notifyChange();
 
             if (valid && lifeCycle.whenValid) {
-                lifeCycle.whenValid(input.value);
+                lifeCycle.whenValid(value);
             } else if (!valid && lifeCycle.whenInvalid) {
-                lifeCycle.whenInvalid(input.value);
+                lifeCycle.whenInvalid(value);
             }
         }.bind(this));
     };
 
-    Avowal.prototype._initLifeCycle = function (name, on) {
+    Avowal.prototype._initLifeCycle = function (name) {
         var lifeCycle = this.lifeCycle[name];
         var input = this.cache[name];
 
@@ -111,31 +121,25 @@
                 input.value = lifeCycle.transform(input.value);
             });
         }
-
-        input.addEventListener(on, function () {
-            this._validate(name);
-        }.bind(this));
     };
 
     Avowal.prototype.delegate = function (spec) {
         forEvery(spec, function (name, lifeCycle) {
             var input = this.form.querySelector('[name=' + name + ']');
-            var on = lifeCycle.on ? lifeCycle.on : this.validateOn;
 
             if (!input) {
                 fail('Input "' + name + '" not found in form "' + this.form.name + '".');
             }
 
             if (!lifeCycle.validate) {
-                fail('Missing "validate" method on input "' + name + '".');
+                fail('Missing "validate" method on input "' + name + '", ' + 'in form "' + this.form.name + '".');
             }
 
             this.cache[name] = input;
             this.state[name] = false;
             this.lifeCycle[name] = lifeCycle;
 
-            input.setAttribute('autocomplete', 'off');
-            this._initLifeCycle(name, on);
+            this._initLifeCycle(name);
         }.bind(this));
     };
 
@@ -226,7 +230,6 @@
                 return;
             }
             input.value = values[name];
-
             if (validate) {
                 this._validate(name);
             }
