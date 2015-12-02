@@ -1,13 +1,13 @@
 # Avowal
-Super lightweight zero dependency optionally asynchronous JavaScript form validation framework (phew!).
+Super lightweight zero dependency asynchronous JavaScript form validation (phew!).
 
 A lot of JavaScript form validation frameworks aim to validate any and every possible set of input data. For example, all types of numeric input (ranges, phone numbers), string input (email addresses), ect.
 
-This framework does not take that approach, rather it aims at separating common form based events (input, blur, change, submit, ...) from functions that validate input data along with functions to process side effects on that data.
+This framework does not take that approach, rather it aims at separating common form based events (input, blur, change, submit, ...) from functions that validate input data along with functions to process side effects on that data. Avowal manages the event system efficiently with event delegation.
 
 An arbitrary number of form inputs can be validated that require asynchronous validation (ex. AJAX) while avoiding race conditions and callback hell.
 
-The API is 100% js based, DOM attributes are not used to validate data. There is support for rendering validation messages against form inputs with templates (see examples).
+The API is 100% JS based, DOM attributes are not used to validate data. There is support for rendering validation messages against form inputs with templates (see examples).
 
 Work in Progress (see Todo).
 
