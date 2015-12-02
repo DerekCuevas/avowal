@@ -51,18 +51,25 @@
             fail('Form "' + opts.name + '" not found.');
         }
 
+        this._initEventDelegation(opts.on || 'input');
+
         this.state = {};
         this.cache = {};
         this.lifeCycle = {};
 
         this.listeners = [];
-        this.validateOn = opts.on || 'submit';
 
         this.templates = {
             success: options.templates.success || '',
             error: options.templates.error || '',
         };
     }
+
+    Avowal.prototype._initEventDelegation = function (on) {
+        this.form.addEventListener(on, function (e) {
+            this._validate(e.target.name);
+        }.bind(this));
+    };
 
     Avowal.prototype._showStatus = function (name, valid, message) {
         var input = this.cache[name];
@@ -98,7 +105,7 @@
         }.bind(this));
     };
 
-    Avowal.prototype._initLifeCycle = function (name, on) {
+    Avowal.prototype._initLifeCycle = function (name) {
         var lifeCycle = this.lifeCycle[name];
         var input = this.cache[name];
 
@@ -111,17 +118,11 @@
                 input.value = lifeCycle.transform(input.value);
             });
         }
-
-        // FIXME: attach only one listener to form, catch bubbled up events from inputs
-        input.addEventListener(on, function () {
-            this._validate(name);
-        }.bind(this));
     };
 
     Avowal.prototype.delegate = function (spec) {
         forEvery(spec, function (name, lifeCycle) {
             var input = this.form.querySelector('[name=' + name + ']');
-            var on = lifeCycle.on ? lifeCycle.on : this.validateOn;
 
             if (!input) {
                 fail('Input "' + name + '" not found in form "' + this.form.name + '".');
@@ -135,8 +136,7 @@
             this.state[name] = false;
             this.lifeCycle[name] = lifeCycle;
 
-            input.setAttribute('autocomplete', 'off');
-            this._initLifeCycle(name, on);
+            this._initLifeCycle(name);
         }.bind(this));
     };
 
@@ -227,7 +227,6 @@
                 return;
             }
             input.value = values[name];
-
             if (validate) {
                 this._validate(name);
             }
