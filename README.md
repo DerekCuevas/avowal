@@ -48,7 +48,8 @@ var particle = new Avowal({
     // <form name='particle' ... ></form>.
     name: 'particle',
 
-    // The validation event (common: 'input', 'blur', 'change', ...).
+    // The validation event (common: 'input', 'blur', 'change', ...). Defaults
+    // to 'input'.
     on: 'input',
 
     // 'handlebars like' HTML templates to be rendered against each input.
@@ -100,10 +101,6 @@ A complete life cycle object with all possible life cycle events specified.
 
 ```javascript
 color: {
-
-    // A form input event to validate on. (input, blur, change, ...)
-    // For consistency use the constructors options.on value instead.
-    on: '',
 
     // Called just before any events are bound to the input,
     // the input DOM ref is passed in as an argument.

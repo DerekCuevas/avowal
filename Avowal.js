@@ -35,7 +35,7 @@
     }
 
     function fail(thing) {
-        throw new Error('Avowal Error => ' + thing);
+        throw new Error('Avowal Error: ' + thing);
     }
 
     function Avowal(options) {
@@ -51,8 +51,6 @@
             fail('Form "' + opts.name + '" not found.');
         }
 
-        this._initEventDelegation(opts.on || 'input');
-
         this.state = {};
         this.cache = {};
         this.lifeCycle = {};
@@ -63,6 +61,8 @@
             success: options.templates.success || '',
             error: options.templates.error || '',
         };
+
+        this._initEventDelegation(opts.on || 'input');
     }
 
     Avowal.prototype._initEventDelegation = function (on) {
@@ -90,17 +90,17 @@
 
     Avowal.prototype._validate = function (name) {
         var lifeCycle = this.lifeCycle[name];
-        var input = this.cache[name];
+        var value = this.cache[name].value;
 
-        lifeCycle.validate(input.value, function (valid, message) {
+        lifeCycle.validate(value, function (valid, message) {
             this.state[name] = valid;
             this._showStatus(name, valid, message);
             this._notifyChange();
 
             if (valid && lifeCycle.whenValid) {
-                lifeCycle.whenValid(input.value);
+                lifeCycle.whenValid(value);
             } else if (!valid && lifeCycle.whenInvalid) {
-                lifeCycle.whenInvalid(input.value);
+                lifeCycle.whenInvalid(value);
             }
         }.bind(this));
     };
