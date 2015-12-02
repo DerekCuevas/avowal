@@ -69,7 +69,7 @@
         this.form.addEventListener(on, function (e) {
             var name = e.target.name;
             if (this.state.hasOwnProperty(name)) {
-                this._validate(e.target.name);
+                this._validate(name);
             }
         }.bind(this));
     };
