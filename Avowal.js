@@ -56,8 +56,8 @@
         this._lifecycle = {};
 
         this._templates = {
-            success: options.templates.success || '',
-            error: options.templates.error || '',
+            success: opts.templates.success || '',
+            error: opts.templates.error || '',
         };
 
         this._initEventDelegation(opts.on || 'input');
