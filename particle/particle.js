@@ -122,7 +122,7 @@
         return newParticle;
     }
 
-    particle.on('change', function () {
+    particle.on('input', function () {
         if (particle.isValid()) {
             if (preview) {
                 particles.removeChild(preview);
