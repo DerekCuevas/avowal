@@ -1,4 +1,6 @@
 # Avowal
+    NOTE: This project is for experimental purposes only. Pull requests and issues are welcome.
+
 Super lightweight zero dependency asynchronous JavaScript form validation (phew!).
 
 A lot of JavaScript form validation frameworks aim to validate any and every possible set of input data. For example, all types of numeric input (ranges, phone numbers), string input (email addresses), ect.
