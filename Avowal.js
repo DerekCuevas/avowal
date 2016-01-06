@@ -218,11 +218,11 @@
     };
 
     Avowal.prototype.getValues = function () {
-        var vals = {};
+        var values = {};
         forEvery(this.cache, function (name, input) {
-            vals[name] = input.value;
+            values[name] = input.value;
         });
-        return vals;
+        return values;
     };
 
     Avowal.prototype.setValues = function (values, validate) {
