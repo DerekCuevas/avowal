@@ -74,6 +74,8 @@
 
     Avowal.prototype._showStatus = function (name, valid, message) {
         var input = this._cache[name];
+
+        // FIXME: if not found do something
         var status = input.parentNode.querySelector('.status-message');
         var template = valid ? this.templates.success : this.templates.error;
 
