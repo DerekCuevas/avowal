@@ -13,6 +13,7 @@
     "validation"
   ],
   "scripts": {
+    "copy-to-examples": "cp Avowal.js ./examples/Avowal.js",
     "test": "mocha"
   },
   "repository": {

@@ -34,8 +34,8 @@
         });
     }
 
-    function fail(thing) {
-        throw new Error('Avowal, ' + thing);
+    function fail(message) {
+        throw new Error('Avowal, ' + message);
     }
 
     function Avowal(options) {
@@ -51,11 +51,9 @@
             fail('Form "' + opts.name + '" not found.');
         }
 
-        this.state = {};
-        this.cache = {};
-        this.lifeCycle = {};
-
-        this.listeners = [];
+        this._state = {};
+        this._cache = {};
+        this._lifecycle = {};
 
         this.templates = {
             success: options.templates.success || '',
@@ -68,14 +66,16 @@
     Avowal.prototype._initEventDelegation = function (on) {
         this.form.addEventListener(on, function (e) {
             var name = e.target.name;
-            if (this.state.hasOwnProperty(name)) {
+            if (this._state.hasOwnProperty(name)) {
                 this._validate(name);
             }
         }.bind(this));
     };
 
     Avowal.prototype._showStatus = function (name, valid, message) {
-        var input = this.cache[name];
+        var input = this._cache[name];
+
+        // FIXME: if not found do something
         var status = input.parentNode.querySelector('.status-message');
         var template = valid ? this.templates.success : this.templates.error;
 
@@ -92,86 +92,84 @@
     };
 
     Avowal.prototype._validate = function (name) {
-        var lifeCycle = this.lifeCycle[name];
-        var value = this.cache[name].value;
+        var lifecycle = this._lifecycle[name];
+        var value = this._cache[name].value;
 
-        lifeCycle.validate(value, function (valid, message) {
-            this.state[name] = valid;
+        lifecycle.validate(value, function (valid, message) {
+            this._state[name] = valid;
             this._showStatus(name, valid, message);
-            this._notifyChange();
 
-            if (valid && lifeCycle.whenValid) {
-                lifeCycle.whenValid(value);
-            } else if (!valid && lifeCycle.whenInvalid) {
-                lifeCycle.whenInvalid(value);
+            if (valid && lifecycle.whenValid) {
+                lifecycle.whenValid(value);
+            } else if (!valid && lifecycle.whenInvalid) {
+                lifecycle.whenInvalid(value);
             }
         }.bind(this));
     };
 
-    Avowal.prototype._initLifeCycle = function (name) {
-        var lifeCycle = this.lifeCycle[name];
-        var input = this.cache[name];
+    Avowal.prototype._initLifecycle = function (name) {
+        var lifecycle = this._lifecycle[name];
+        var input = this._cache[name];
 
-        if (lifeCycle.init) {
-            lifeCycle.init(input);
+        if (lifecycle.init) {
+            lifecycle.init(input);
         }
 
-        if (lifeCycle.transform) {
+        if (lifecycle.transform) {
             input.addEventListener('input', function () {
-                input.value = lifeCycle.transform(input.value);
+                input.value = lifecycle.transform(input.value);
             });
         }
     };
 
     Avowal.prototype.delegate = function (spec) {
-        forEvery(spec, function (name, lifeCycle) {
+        forEvery(spec, function (name, lifecycle) {
             var input = this.form.querySelector('[name=' + name + ']');
 
             if (!input) {
                 fail('Input "' + name + '" not found in form "' + this.form.name + '".');
             }
 
-            if (!lifeCycle.validate) {
+            if (!lifecycle.validate) {
                 fail('Missing "validate" method on input "' + name + '", ' + 'in form "' + this.form.name + '".');
             }
 
-            this.cache[name] = input;
-            this.state[name] = false;
-            this.lifeCycle[name] = lifeCycle;
+            this._cache[name] = input;
+            this._state[name] = false;
+            this._lifecycle[name] = lifecycle;
 
-            this._initLifeCycle(name);
+            this._initLifecycle(name);
         }.bind(this));
     };
 
     Avowal.prototype.reset = function (clear) {
-        forEvery(this.state, function (name) {
+        forEvery(this._state, function (name) {
             this.resetInput(name, clear);
         }.bind(this));
     };
 
     Avowal.prototype.resetInput = function (name, clear) {
-        var input = this.cache[name];
-        var lifeCycle = this.lifeCycle[name];
+        var input = this._cache[name];
+        var lifecycle = this._lifecycle[name];
         var status = input.parentNode.querySelector('.status-message');
 
         if (clear) {
             input.value = '';
         }
 
-        if (lifeCycle.init) {
-            lifeCycle.init(this.cache[name]);
+        if (lifecycle.init) {
+            lifecycle.init(this._cache[name]);
         }
 
-        this.state[name] = false;
+        this._state[name] = false;
         input.classList.remove('success', 'error');
         status.innerHTML = '';
-        this._notifyChange();
     };
 
     Avowal.prototype.isValid = function () {
         var allValid = true;
 
-        forEvery(this.state, function (_, valid) {
+        forEvery(this._state, function (_, valid) {
             if (!valid) {
                 allValid = false;
             }
@@ -183,12 +181,12 @@
         var allValid = true;
         var cb = callback || function () {};
 
-        asyncForEvery(this.state, function (name, _, done) {
-            var input = this.cache[name];
-            var lifeCycle = this.lifeCycle[name];
+        asyncForEvery(this._state, function (name, _, done) {
+            var input = this._cache[name];
+            var lifecycle = this._lifecycle[name];
 
-            lifeCycle.validate(input.value, function (valid, message) {
-                this.state[name] = valid;
+            lifecycle.validate(input.value, function (valid, message) {
+                this._state[name] = valid;
                 this._showStatus(name, valid, message);
 
                 if (!valid) {
@@ -202,31 +200,20 @@
         });
     };
 
-    Avowal.prototype._notifyChange = function () {
-        this.listeners.forEach(function (listener) {
-            listener(this.state);
-        }.bind(this));
-    };
-
-    // FIXME: breaking change, rename 'change' to 'state-change' to avoid event conflict
-    Avowal.prototype.on = function (target, fun) {
-        if (target === 'change') {
-            this.listeners.push(fun);
-        } else {
-            this.form.addEventListener(target, fun);
-        }
+    Avowal.prototype.on = function (event, fun) {
+        this.form.addEventListener(event, fun);
     };
 
     Avowal.prototype.getValues = function () {
         var values = {};
-        forEvery(this.cache, function (name, input) {
+        forEvery(this._cache, function (name, input) {
             values[name] = input.value;
         });
         return values;
     };
 
     Avowal.prototype.setValues = function (values, validate) {
-        forEvery(this.cache, function (name, input) {
+        forEvery(this._cache, function (name, input) {
             if (!values[name]) {
                 return;
             }
@@ -238,7 +225,7 @@
     };
 
     Avowal.prototype.getState = function () {
-        return this.state;
+        return this._state;
     };
 
     // (CommonJS)

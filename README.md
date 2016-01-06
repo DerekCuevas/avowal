@@ -209,10 +209,10 @@ on
  * The 'change' event is overridden to watch for changes of
  * the values in the form.
  *
- * @param  {String} target
+ * @param  {String} event
  * @param  {Function} fun
  */
-Avowal.prototype.on = function (target, fun) {...}
+Avowal.prototype.on = function (event, fun) {...}
 ```
 
 getValues
