@@ -208,9 +208,6 @@ on
 /**
  * Allows the setting of events on the form.
  *
- * The 'change' event is overridden to watch for changes of
- * the values in the form.
- *
  * @param  {String} event
  * @param  {Function} fun
  */
