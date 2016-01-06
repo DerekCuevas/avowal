@@ -55,7 +55,7 @@
         this._cache = {};
         this._lifecycle = {};
 
-        this.templates = {
+        this._templates = {
             success: options.templates.success || '',
             error: options.templates.error || '',
         };
@@ -77,7 +77,7 @@
 
         // FIXME: if not found do something
         var status = input.parentNode.querySelector('.status-message');
-        var template = valid ? this.templates.success : this.templates.error;
+        var template = valid ? this._templates.success : this._templates.error;
 
         if (!message) {
             return;
