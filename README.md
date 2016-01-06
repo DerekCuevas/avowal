@@ -3,7 +3,7 @@
 
 Super lightweight zero dependency asynchronous JavaScript form validation (phew!).
 
-A lot of JavaScript form validation frameworks aim to validate any and every possible set of input data. For example, all types of numeric input (ranges, phone numbers), string input (email addresses), ect.
+A lot of JavaScript form validation frameworks aim to validate any and every possible set of input data. For example, all types of numeric and string input.
 
 This framework does not take that approach, rather it aims at separating common form based events (input, blur, change, submit, ...) from functions that validate input data along with functions to process side effects on that data. Avowal manages the event system efficiently with event delegation.
 
