@@ -75,7 +75,7 @@
     Avowal.prototype._showStatus = function (name, valid, message) {
         var input = this._cache[name];
 
-        // FIXME: if not found do something
+        // FIXME: 'status' could be undefined
         var status = input.parentNode.querySelector('.status-message');
         var template = valid ? this._templates.success : this._templates.error;
 
@@ -89,6 +89,16 @@
         status.innerHTML = render(template, {
             status: message,
         });
+    };
+
+    Avowal.prototype._hideStatus = function (name) {
+        var input = this._cache[name];
+
+        // FIXME: 'status' could be undefined
+        var status = input.parentNode.querySelector('.status-message');
+
+        input.classList.remove('success', 'error');
+        status.innerHTML = '';
     };
 
     Avowal.prototype._validate = function (name) {
@@ -151,19 +161,17 @@
     Avowal.prototype.resetInput = function (name, clear) {
         var input = this._cache[name];
         var lifecycle = this._lifecycle[name];
-        var status = input.parentNode.querySelector('.status-message');
 
         if (clear) {
             input.value = '';
         }
 
+        this._state[name] = false;
+        this._hideStatus(name);
+
         if (lifecycle.init) {
             lifecycle.init(this._cache[name]);
         }
-
-        this._state[name] = false;
-        input.classList.remove('success', 'error');
-        status.innerHTML = '';
     };
 
     Avowal.prototype.isValid = function () {

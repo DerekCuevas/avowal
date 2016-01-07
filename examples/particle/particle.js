@@ -28,10 +28,10 @@
             ret.message = 'The ' + name + ' is required.';
         } else if (size <= min) {
             ret.valid = false;
-            ret.message = 'The ' + name + ' must be greater than ' + min + '.';
+            ret.message = 'The ' + name + ' must be greater than ' + min + 'px.';
         } else if (size >= max) {
             ret.valid = false;
-            ret.message = 'The ' + name + ' must be less than the current window size.';
+            ret.message = 'The ' + name + ' must be less than ' + max + 'px.';
         } else {
             ret.valid = true;
             ret.message = 'The ' + name + ' looks good.';
