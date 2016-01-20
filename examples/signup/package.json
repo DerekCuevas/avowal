@@ -11,7 +11,7 @@
   "author": "Derek Cuevas",
   "license": "MIT",
   "dependencies": {
-    "avowal": "^1.1.0",
+    "avowal": "^1.0.10",
     "body-parser": "^1.13.2",
     "express": "^4.13.1",
     "jquery": "^2.1.4"
