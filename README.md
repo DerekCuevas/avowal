@@ -251,4 +251,4 @@ Avowal.prototype.getState = function () {...}
 - [ ] add some unit tests
 - [ ] document source
 - [x] make rendering templates optional?
-- [ ] better status-message support / cache 'status-message' ref
+- [x] better status-message support / cache 'status-message' ref

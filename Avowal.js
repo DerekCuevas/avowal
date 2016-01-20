@@ -38,6 +38,13 @@
         throw new Error('Avowal, ' + message);
     }
 
+    function failStatusMessage(name) {
+        fail(
+            'no status message found for input "' + name +
+            '". Declare a wrapper DOM node with id="' + name + '-status-message" to render messages.'
+        );
+    }
+
     function Avowal(options) {
         var opts = options || {};
         opts.templates = opts.templates || {};
@@ -55,9 +62,10 @@
         this._cache = {};
         this._lifecycle = {};
 
+        this._statusMessages = {};
         this._templates = {
-            success: opts.templates.success || '',
-            error: opts.templates.error || '',
+            success: opts.templates.success || '{{message}}',
+            error: opts.templates.error || '{{message}}',
         };
 
         this._initEventDelegation(opts.on || 'input');
@@ -74,28 +82,32 @@
 
     Avowal.prototype._showStatus = function (name, valid, message) {
         var input = this._cache[name];
-
-        // FIXME: 'status' could be undefined
-        var status = input.parentNode.querySelector('.status-message');
+        var status = this._statusMessages[name];
         var template = valid ? this._templates.success : this._templates.error;
 
         if (!message) {
             return;
         }
 
+        if (!status) {
+            failStatusMessage(name);
+        }
+
         input.classList.remove('success', 'error');
         input.classList.add(valid ? 'success' : 'error');
 
         status.innerHTML = render(template, {
-            status: message,
+            message: message,
         });
     };
 
     Avowal.prototype._hideStatus = function (name) {
         var input = this._cache[name];
+        var status = this._statusMessages[name];
 
-        // FIXME: 'status' could be undefined
-        var status = input.parentNode.querySelector('.status-message');
+        if (!status) {
+            failStatusMessage(name);
+        }
 
         input.classList.remove('success', 'error');
         status.innerHTML = '';
@@ -135,6 +147,7 @@
     Avowal.prototype.delegate = function (spec) {
         forEvery(spec, function (name, lifecycle) {
             var input = this.form.querySelector('[name=' + name + ']');
+            var statusMessage = this.form.querySelector('#' + name + '-status-message');
 
             if (!input) {
                 fail('Input "' + name + '" not found in form "' + this.form.name + '".');
@@ -147,6 +160,8 @@
             this._cache[name] = input;
             this._state[name] = false;
             this._lifecycle[name] = lifecycle;
+
+            this._statusMessages[name] = statusMessage;
 
             this._initLifecycle(name);
         }.bind(this));

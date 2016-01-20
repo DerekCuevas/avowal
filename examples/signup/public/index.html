@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>Signup</title>
 
     <link rel="stylesheet" type="text/css" href="base.css">
@@ -22,13 +22,13 @@
                     <div class="left">
                         <input type="text" name="first" class="name"
                             placeholder="First Name">
-                        <div class="status-message"></div>
+                        <div id="first-status-message"></div>
                     </div>
                     <div class="middle"></div>
                     <div class="right">
                         <input type="text" name="last" class="name"
                             placeholder="Last Name">
-                        <div class="status-message"></div>
+                        <div id="last-status-message"></div>
                     </div>
                 </div>
             </li>
@@ -37,18 +37,18 @@
                     <input type="text" name="username"
                         placeholder="@Username">
                     <i class="fa fa-spinner fa-spin username-spinner"></i>
-                    <div class="status-message"></div>
+                    <div id="username-status-message"></div>
                 </div>
             </li>
             <li>
                 <input type="password" name="password_one"
                     placeholder="Password">
-                <div class="status-message"></div>
+                <div id="password_one-status-message"></div>
             </li>
             <li>
                 <input type="password" name="password_two"
                     placeholder="Confirm Password">
-                <div class="status-message"></div>
+                <div id="password_two-status-message"></div>
             </li>
             <li>
                 <button type="submit">
@@ -66,14 +66,14 @@
     <template class="success">
         <div class="success">
             <i class="fa fa-check"></i>
-            {{status}}
+            {{message}}
         </div>
     </template>
 
     <template class="error">
         <div class="error">
             <i class="fa fa-exclamation-circle"></i>
-            {{status}}
+            {{message}}
         </div>
     </template>
 

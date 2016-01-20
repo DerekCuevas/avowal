@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>Async Example</title>
 
     <link rel="stylesheet" type="text/css" href="base.css">
@@ -21,21 +21,21 @@
                 <div class="input-container">
                     <input type="text" name="step1" placeholder="1. Step One">
                     <i id="step1-spinner" class="fa fa-spinner fa-spin"></i>
-                    <div class="status-message"></div>
+                    <div id="step1-status-message"></div>
                 </div>
             </li>
             <li>
                 <div class="input-container">
                     <input type="text" name="step2" placeholder="2. Step Two">
                     <i id="step2-spinner" class="fa fa-spinner fa-spin"></i>
-                    <div class="status-message"></div>
+                    <div id="step2-status-message"></div>
                 </div>
             </li>
             <li>
                 <div class="input-container">
                     <input type="text" name="step3" placeholder="3. Step Three">
                     <i id="step3-spinner" class="fa fa-spinner fa-spin"></i>
-                    <div class="status-message"></div>
+                    <div id="step3-status-message"></div>
                 </div>
             </li>
             <li>
@@ -56,14 +56,14 @@
     <template class="success">
         <div class="success">
             <i class="fa fa-check"></i>
-            {{status}}
+            {{message}}
         </div>
     </template>
 
     <template class="error">
         <div class="error">
             <i class="fa fa-exclamation-circle"></i>
-            {{status}}
+            {{message}}
         </div>
     </template>
 
