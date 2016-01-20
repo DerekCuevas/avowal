@@ -40,7 +40,7 @@
 
     function failStatusMessage(name) {
         fail(
-            'no status message found for input "' + name +
+            'No status message found for input "' + name +
             '". Declare a wrapper DOM node with id="' + name + '-status-message" to render messages.'
         );
     }

@@ -55,12 +55,11 @@ var particle = new Avowal({
     on: 'input',
 
     // 'handlebars like' HTML templates to be rendered against each input.
-    // These will render in a div with class name of 'status-message'
-    // closest to the input.
-    // (this might change sometime in the future...)
+    // Provide a wrapper div with id of `${name}-status-message` (ex. id="color-status-message")
+    // for the messages to be rendered into.
     templates: {
-        success: '<p class="success">{{status}}</p>',
-        error: '<p class="error">{{status}}</p>',
+        success: '<p>{{message}}</p>',
+        error: '<p>{{message}}</p>',
     },
 });
 ```
@@ -86,10 +85,12 @@ color: {
 
     // The only required life cycle method, 'validate' accepts two parameters,
     // the current value of the input and a callback function.
-    // The callback accepts two values, a boolean (valid / invalid) and
+    //
+    // The callback accepts two values, a boolean (valid / invalid) value and
     // a message to be rendered in one of your templates under the input.
-    // If valid == true, the success template will be rendered. If valid == false
+    // If valid === true, the success template will be rendered. If valid === false
     // the error template will be rendered.
+    //
     // Must return the state of the value with the callback as show below.
     // Rendering is optional, if a message is not supplied to the callback the
     // templates will not be rendered.
