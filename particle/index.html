@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>Particle</title>
     <link rel="stylesheet" type="text/css" href="base.css">
     <link rel="stylesheet"
@@ -18,22 +18,22 @@
                 <input type="text" name="color"
                     placeholder="Enter Hex Color ( ex. #abc )">
                 <span id="color-preview"></span>
-                <div class="status-message"></div>
+                <div id="color-status-message"></div>
             </li>
             <li>
                 <input type="number" step="10" name="radius"
                     placeholder="Radius">
-                <div class="status-message"></div>
+                <div id="radius-status-message"></div>
             </li>
             <li>
                 <input type="number" step="10" name="x"
                     placeholder="x position">
-                <div class="status-message"></div>
+                <div id="x-status-message"></div>
             </li>
             <li>
                 <input type="number" step="10" name="y"
                     placeholder="y position">
-                <div class="status-message"></div>
+                <div id="y-status-message"></div>
             </li>
             <li>
                 <button type="submit">
@@ -53,14 +53,14 @@
     <template class="success">
         <div class="success">
             <i class="fa fa-check"></i>
-            {{status}}
+            {{message}}
         </div>
     </template>
 
     <template class="error">
         <div class="error">
             <i class="fa fa-exclamation"></i>
-            {{status}}
+            {{message}}
         </div>
     </template>
 
