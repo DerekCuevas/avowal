@@ -11,7 +11,7 @@ An arbitrary number of form inputs can be validated that require asynchronous va
 
 The API is 100% JS based, DOM attributes are not used to validate data. There is support for rendering validation messages against form inputs with templates (see examples).
 
-Work in Progress (see Todo).
+Work in Progress.
 
 ## Examples
 Examples can be found in /examples. There are three examples, an async example (/async), a particle editor (/particle) and a sign up form (/signup). Only /async and /particle are published to gh-pages.
@@ -29,7 +29,7 @@ git clone https://github.com/DerekCuevas/avowal.git
 npm install --save avowal
 ```
 
-Require with commonJS (browserify) or include directly via a script tag.
+Require with commonJS or include directly via a script tag.
 
 ```javascript
 var Avowal = require('avowal');
@@ -106,7 +106,7 @@ A complete life cycle object with all possible life cycle events specified.
 color: {
 
     // Called just before any events are bound to the input,
-    // the input DOM ref is passed in as an argument.
+    // the input DOM reference is passed in as an argument.
     init: function (input) {...},
 
     // The main validation function (documented above).
@@ -247,9 +247,3 @@ getState
  */
 Avowal.prototype.getState = function () {...}
 ```
-
-## To do
-- [ ] add some unit tests
-- [ ] document source
-- [x] make rendering templates optional?
-- [x] better status-message support / cache 'status-message' ref
