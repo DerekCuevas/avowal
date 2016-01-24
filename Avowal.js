@@ -217,7 +217,6 @@
                 }
                 done();
             }.bind(this));
-
         }.bind(this), function () {
             cb(allValid);
         });
@@ -258,5 +257,4 @@
     } else {
         root.Avowal = Avowal;
     }
-
 }).call(this);

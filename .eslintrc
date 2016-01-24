@@ -6,8 +6,6 @@
         "space-before-function-paren": 0,
         "strict": 0,
         "id-length": 0,
-        "padded-blocks": 0,
-        "no-console": 0,
     },
     "globals": {
         "Avowal": true,
