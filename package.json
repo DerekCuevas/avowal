@@ -3,6 +3,16 @@
   "version": "1.0.10",
   "description": "async js form validation",
   "main": "Avowal.js",
+  "author": "Derek Cuevas",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DerekCuevas/avowal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DerekCuevas/avowal/issues"
+  },
+  "homepage": "https://github.com/DerekCuevas/avowal#readme",
   "directories": {
     "examples": "examples"
   },
@@ -15,18 +25,9 @@
   "scripts": {
     "lint": "eslint Avowal.js examples/async examples/particle examples/signup",
     "copy-to-examples": "cp Avowal.js ./examples/Avowal.js",
+    "publish-examples": "gulp deploy-examples",
     "test": "mocha"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DerekCuevas/avowal.git"
-  },
-  "author": "Derek Cuevas",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/DerekCuevas/avowal/issues"
-  },
-  "homepage": "https://github.com/DerekCuevas/avowal#readme",
   "devDependencies": {
     "eslint": "^1.8.0",
     "eslint-config-airbnb": "^0.1.0",
