@@ -9,41 +9,48 @@ var asyncForm = new Avowal({
     },
 });
 
+function rand() {
+    return Math.ceil(Math.random() * 5000);
+}
+
 asyncForm.delegate({
     step1: {
         init: function (input) {
             input.focus();
         },
         validate: function (val, cb) {
+            var timeout = rand();
             var spinner = document.getElementById('step1-spinner');
             spinner.style.display = 'inline';
 
             setTimeout(function () {
                 spinner.style.display = 'none';
-                cb(true, 'valid after one second!');
-            }, 1000);
+                cb(true, 'valid after ' + (timeout / 1000) + ' seconds!');
+            }, timeout);
         },
     },
     step2: {
         validate: function (val, cb) {
+            var timeout = rand();
             var spinner = document.getElementById('step2-spinner');
             spinner.style.display = 'inline';
 
             setTimeout(function () {
                 spinner.style.display = 'none';
-                cb(true, 'valid after four seconds!');
-            }, 4000);
+                cb(true, 'valid after ' + (timeout / 1000) + ' seconds!');
+            }, timeout);
         },
     },
     step3: {
         validate: function (val, cb) {
+            var timeout = rand();
             var spinner = document.getElementById('step3-spinner');
             spinner.style.display = 'inline';
 
             setTimeout(function () {
                 spinner.style.display = 'none';
-                cb(true, 'valid after two seconds!');
-            }, 2000);
+                cb(true, 'valid after ' + (timeout / 1000) + ' seconds!');
+            }, timeout);
         },
     },
 });
