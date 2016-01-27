@@ -114,13 +114,13 @@ color: {
     // The main validation function (documented above).
     validate: function (val, cb) {...},
 
-    // called whenever validate returns true.
+    // Called whenever validate returns true.
     whenValid: function (val) {...},
 
-    // called whenever validate returns false.
+    // Called whenever validate returns false.
     whenInvalid: function (val) {...},
 
-    // transforms the value to the returned value as the user types
+    // Transforms the value to the returned value as the user types
     // fires on 'input' event.
     transform: function (val) {...}
 }
@@ -153,6 +153,8 @@ delegate
  * of the form's inputs. The values are the lifeCycle
  * objects for the matched inputs.
  *
+ * Will throw if lifecycle object or inputs are invalid/not found.
+ *
  * @param  {Object} spec {name: lifeCycle}
  */
 Avowal.prototype.delegate = function (spec) {...}
@@ -162,7 +164,7 @@ reset
 ```javascript
 /**
  * Resets the validation state of the form.
- * If clear is 'truthy' the values in the form will also be cleared.
+ * If clear is true the values in the form will also be cleared.
  *
  * @param {Boolean} clear
  */
@@ -172,12 +174,10 @@ Avowal.prototype.reset = function (clear) {...}
 resetInput
 ```javascript
 /**
- * Resets a given input's validation state based on the
- * name attribute of the input.
+ * Resets a given input's validation state.
+ * If clear is true the value of the input will also be reset.
  *
- * If clear is 'truthy' the value of the input will also be reset.
- *
- * @param {String} name
+ * @param {String} name (name attribute of input)
  * @param {Boolean} clear
  */
 Avowal.prototype.resetInput = function (name, clear) {...}
@@ -186,7 +186,7 @@ Avowal.prototype.resetInput = function (name, clear) {...}
 isValid
 ```javascript
 /**
- * Evaluates the current form state (does not execute the validate functions).
+ * Evaluates the current form state (**does not** execute the validate functions).
  *
  * @return {Boolean}
  */
@@ -197,7 +197,7 @@ validateAll
 ```javascript
 /**
  * Evaluates all form inputs, waits for all 'N' inputs to finish
- * validating before executing the callback. (does execute the validate functions)
+ * validating before executing the callback. (**does** execute the validate functions)
  *
  * Returns the status through the callback function.
  *
@@ -210,6 +210,7 @@ on
 ```javascript
 /**
  * Allows the setting of events on the form.
+ * Wraps #addEventListener(), targets this.form.
  *
  * @param  {String} event
  * @param  {Function} fun
@@ -230,10 +231,10 @@ Avowal.prototype.getValues = function () {...}
 setValues
 ```javascript
 /**
- * Will update the values in the form.
+ * Updates the values in the form.
  *
- * As a side effect, the validate function will be executed against
- * any value changed if the validate flag is set to true.
+ * If the validate flag is set to true the validate function will be executed against
+ * any value changed in the form.
  *
  * @param {Object} values {name: value}
  * @param {Boolean} validate
@@ -244,7 +245,7 @@ Avowal.prototype.setValues = function (values, validate) {...}
 getState
 ```javascript
 /**
- * returns the current validation state
+ * Returns the current validation state.
  * @return {Object} {name: Boolean}
  */
 Avowal.prototype.getState = function () {...}
