@@ -9,7 +9,7 @@ This library does not take that approach, rather it aims at separating common fo
 
 An arbitrary number of form inputs can be validated that require asynchronous validation (ex. AJAX) while avoiding race conditions and callback hell.
 
-The API is 100% JS based, DOM attributes are not used to validate data. There is support for rendering validation messages against form inputs with templates (see examples).
+The API is 100% JS based, DOM attributes are **not** used to validate data. There is support for rendering validation messages against form inputs with templates (see examples).
 
 Work in Progress.
 
@@ -41,7 +41,7 @@ var Avowal = require('avowal');
 
 ## Using it
 
-Create a Avowal instance. It makes sense to name the instance the same as the form.
+Create an Avowal instance. It makes sense to name the instance the same as the form.
 
 ```javascript
 var particle = new Avowal({
