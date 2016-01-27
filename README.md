@@ -3,9 +3,9 @@
 
 Super lightweight zero dependency asynchronous JavaScript form validation (phew!).
 
-A lot of JavaScript form validation frameworks aim to validate any and every possible set of input data. For example, all types of numeric and string input.
+A lot of JavaScript form validation libraries aim to validate any and every possible set of input data. For example, all types of numeric and string input.
 
-This framework does not take that approach, rather it aims at separating common form based events (input, blur, change, submit, ...) from functions that validate input data along with functions to process side effects on that data. Avowal manages the event system efficiently with event delegation.
+This library does not take that approach, rather it aims at separating common form based events (input, blur, change, submit, ...) from functions that validate input data along with functions to process side effects on that data. Avowal manages the event system efficiently with event delegation.
 
 An arbitrary number of form inputs can be validated that require asynchronous validation (ex. AJAX) while avoiding race conditions and callback hell.
 
@@ -54,12 +54,14 @@ var particle = new Avowal({
     // to 'input'.
     on: 'input',
 
-    // 'handlebars like' HTML templates to be rendered against each input.
-    // Provide a wrapper div with id of `${name}-status-message` (ex. id="color-status-message")
+    // 'Handlebars like' HTML templates to be rendered against each input.
+    // Provide a wrapper DOM node with id of `${name}-status-message` (ex. id="color-status-message")
     // for the messages to be rendered into.
+    //
+    // Rendering is optional (see 'The lifecycle object').
     templates: {
-        success: '<p>{{message}}</p>',
-        error: '<p>{{message}}</p>',
+        success: '<p class="success">{{message}}</p>',
+        error: '<p class="error">{{message}}</p>',
     },
 });
 ```
@@ -70,20 +72,20 @@ The delegate function accepts a specification object that describes the form and
 
 ```javascript
 particle.delegate({
-    color: {/* life cycle object for the 'color' input */},
-    radius: {/* life cycle object for the 'radius' input */},
+    color: {/* lifecycle object for the 'color' input */},
+    radius: {/* lifecycle object for the 'radius' input */},
     ...
 });
 ```
 
-## The life cycle object
+## The lifecycle object
 
-Each input can specify a life cycle object, the bare minimum life cycle object will include the validate method only. Below is a bare minimum life cycle object.
+Each input can specify a lifecycle object, the bare minimum lifecycle object will include the validate method only. Below is a bare minimum lifecycle object.
 
 ```javascript
 color: {
 
-    // The only required life cycle method, 'validate' accepts two parameters,
+    // The only required lifecycle method, 'validate' accepts two parameters,
     // the current value of the input and a callback function.
     //
     // The callback accepts two values, a boolean (valid / invalid) value and
@@ -100,7 +102,7 @@ color: {
 }
 ```
 
-A complete life cycle object with all possible life cycle events specified.
+A complete lifecycle object with all possible lifecycle events specified.
 
 ```javascript
 color: {
