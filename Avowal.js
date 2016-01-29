@@ -1,5 +1,5 @@
 /**
- * Avowal - small async form validation framework
+ * Avowal - small async form validation library
  * @author Derek Cuevas
  */
 
