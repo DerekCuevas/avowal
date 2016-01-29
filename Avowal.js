@@ -204,8 +204,7 @@
         var allValid = true;
         var cb = callback || function () {};
 
-        asyncForEvery(this._state, function (name, _, done) {
-            var input = this._cache[name];
+        asyncForEvery(this._cache, function (name, input, done) {
             var lifecycle = this._lifecycle[name];
 
             lifecycle.validate(input.value, function (valid, message) {
@@ -215,6 +214,7 @@
                 if (!valid) {
                     allValid = false;
                 }
+
                 done();
             }.bind(this));
         }.bind(this), function () {
@@ -228,6 +228,7 @@
 
     Avowal.prototype.getValues = function () {
         var values = {};
+
         forEvery(this._cache, function (name, input) {
             values[name] = input.value;
         });
