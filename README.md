@@ -14,7 +14,7 @@ The API is 100% JS based, DOM attributes are **not** used to validate data. Ther
 Work in Progress.
 
 ## Examples
-Examples can be found in /examples. There are three examples, an async example (/async), a particle editor (/particle) and a sign up form (/signup). Only /async and /particle are published to gh-pages.
+Examples can be found in [/examples](/examples). There are three examples, an async example [/async](examples/async), a particle editor [/particle](examples/particle) and a sign up form [/signup](examples/signup). Only /async and /particle are published to gh-pages.
 
 ![alt tag](particle.gif)
 
