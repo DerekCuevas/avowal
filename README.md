@@ -1,7 +1,7 @@
 # Avowal
     NOTE: This project is for experimental purposes only. Pull requests and issues are welcome.
 
-Super lightweight zero dependency asynchronous JavaScript form validation (phew!).
+Super lightweight zero dependency asynchronous JavaScript form validation.
 
 A lot of JavaScript form validation libraries aim to validate any and every possible set of input data. For example, all types of numeric and string input.
 
