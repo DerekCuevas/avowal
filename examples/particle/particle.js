@@ -89,13 +89,13 @@
         },
         x: {
             validate: function (x, callback) {
-                var valid = validateSize(x, -1, window.innerWidth, 'x position');
+                var valid = validateSize(x, 0, window.innerWidth, 'x position');
                 callback(valid.valid, valid.message);
             },
         },
         y: {
             validate: function (y, callback) {
-                var valid = validateSize(y, -1, window.innerHeight, 'y position');
+                var valid = validateSize(y, 0, window.innerHeight, 'y position');
                 callback(valid.valid, valid.message);
             },
         },

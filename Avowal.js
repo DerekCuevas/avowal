@@ -39,12 +39,12 @@
     }
 
     function fail(message) {
-        throw new Error('Avowal, ' + message);
+        throw new Error('Avowal => ' + message);
     }
 
     function failStatusMessage(name) {
         fail(
-            'No status message found for input "' + name +
+            'no status message found for input "' + name +
             '". Declare a wrapper DOM node with id="' + name + '-status-message" to render messages.'
         );
     }
@@ -66,12 +66,12 @@
         opts.templates = opts.templates || {};
 
         if (!opts.name) {
-            fail('Form name attribute needed.');
+            fail('form name attribute needed.');
         }
 
         this.form = document.querySelector('form[name=' + opts.name + ']');
         if (!this.form) {
-            fail('Form "' + opts.name + '" not found.');
+            fail('form "' + opts.name + '" not found.');
         }
 
         this._state = {};
@@ -179,14 +179,14 @@
 
             if (!input) {
                 fail(
-                    'Input "' + name + '" not found in form "' +
+                    'input "' + name + '" not found in form "' +
                     this.form.name + '".'
                 );
             }
 
             if (!isFn(lifecycle.validate)) {
                 fail(
-                    'Missing or invalid "validate" method on input "' +
+                    'missing or invalid "validate" method on input "' +
                     name + '", ' + 'in form "' + this.form.name + '".'
                 );
             }
