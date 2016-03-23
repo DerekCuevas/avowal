@@ -215,9 +215,9 @@ on
  * Wraps #addEventListener(), targets this.form.
  *
  * @param  {String} event
- * @param  {Function} fun
+ * @param  {Function} callback
  */
-Avowal.prototype.on = function (event, fun) {...}
+Avowal.prototype.on = function (event, callback) {...}
 ```
 
 getValues
