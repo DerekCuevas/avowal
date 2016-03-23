@@ -11,7 +11,7 @@ An arbitrary number of form inputs can be validated that require asynchronous va
 
 The API is 100% JS based, DOM attributes are **not** used to validate data. There is support for rendering validation messages against form inputs with templates (see examples).
 
-Work in Progress.
+Work in Progress (tests needed :scream:).
 
 ## Examples
 Examples can be found in [/examples](/examples). There are three examples, an async example [/async](examples/async), a particle editor [/particle](examples/particle) and a sign up form [/signup](examples/signup). Only /async and /particle are published to gh-pages.
