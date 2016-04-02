@@ -22,6 +22,9 @@
     "form",
     "validation"
   ],
+  "files": [
+    "Avowal.js"
+  ],
   "scripts": {
     "lint": "eslint Avowal.js examples/async examples/particle examples/signup",
     "copy-to-examples": "cp Avowal.js ./examples/Avowal.js",

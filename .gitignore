@@ -1,7 +1,5 @@
 node_modules
-npm-debug.log
-examples/signup/node_modules
-examples/signup/public/bundle.js
+**/bundle.js
 .DS_Store
 .publish
 TODO.md
