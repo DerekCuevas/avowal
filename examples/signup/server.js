@@ -39,6 +39,5 @@ app.get('/users/available', function (req, res) {
 });
 
 app.listen(app.get('port'), function () {
-    console.log('app in %s at http://localhost:%s',
-        app.get('env'), app.get('port'));
+    console.log('app in %s at http://localhost:%s', app.get('env'), app.get('port'));
 });

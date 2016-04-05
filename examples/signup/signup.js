@@ -124,7 +124,7 @@ signup.delegate({
                 var passwordOne = $passwordOne.val();
 
                 if (!validPass(password)) {
-                    callback(false, 'Confirmation Password invalid.');
+                    callback(false, 'Confirmation password invalid.');
                 } else if (passwordOne !== password) {
                     callback(false, 'Password mismatch.');
                 } else {
