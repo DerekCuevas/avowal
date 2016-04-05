@@ -28,7 +28,8 @@
   "scripts": {
     "lint": "eslint Avowal.js examples/async examples/particle examples/signup",
     "publish-examples": "gulp deploy-examples",
-    "test": "mocha"
+    "test": "mocha",
+    "prepublish": "npm run lint && npm test"
   },
   "devDependencies": {
     "eslint": "^1.8.0",
