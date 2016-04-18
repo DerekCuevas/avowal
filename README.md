@@ -3,9 +3,11 @@
 
 Super lightweight zero dependency asynchronous JavaScript form validation.
 
+<!--
 A lot of JavaScript form validation libraries aim to validate any and every possible set of input data. For example, all types of numeric and string input.
 
 This library does not take that approach, rather it aims at separating common form based events (input, blur, change, submit, ...) from functions that validate input data along with functions to process side effects on that data. Avowal manages the event system efficiently with event delegation.
+-->
 
 An arbitrary number of form inputs can be validated that require asynchronous validation (ex. AJAX) while avoiding race conditions and callback hell.
 
