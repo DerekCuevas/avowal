@@ -1,6 +1,6 @@
 {
   "name": "avowal",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "async js form validation",
   "main": "Avowal.js",
   "author": "Derek Cuevas",
