@@ -5,8 +5,8 @@ var asyncForm = new Avowal({
   on: 'submit',
   templates: {
     success: document.querySelector('template.success').innerHTML,
-    error: document.querySelector('template.error').innerHTML,
-  },
+    error: document.querySelector('template.error').innerHTML
+  }
 });
 
 function validate(step) {
@@ -29,14 +29,14 @@ asyncForm.delegate({
     init: function (input) {
       input.focus();
     },
-    validate: validate('step1'),
+    validate: validate('step1')
   },
   step2: {
-    validate: validate('step2'),
+    validate: validate('step2')
   },
   step3: {
-    validate: validate('step3'),
-  },
+    validate: validate('step3')
+  }
 });
 
 asyncForm.on('reset', function () {

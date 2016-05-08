@@ -19,8 +19,8 @@ var signup = new Avowal({
   on: 'input',
   templates: {
     success: $('template.success').html(),
-    error: $('template.error').html(),
-  },
+    error: $('template.error').html()
+  }
 });
 
 function isEmpty(value) {
@@ -66,7 +66,7 @@ signup.delegate({
     transform: function (first) {
       // probably not the best idea, but just to show you can
       return titleCase(first);
-    },
+    }
   },
   last: {
     validate: function (last, callback) {
@@ -76,7 +76,7 @@ signup.delegate({
     },
     transform: function (last) {
       return titleCase(last);
-    },
+    }
   },
   username: {
     // using a closure to cache the DOM
@@ -86,7 +86,7 @@ signup.delegate({
       return debounce(200, function (username, callback) {
         $spinner.show();
 
-        $.get('/users/available', {username: username}, function (available) {
+        $.get('/users/available', { username: username }, function (available) {
           $spinner.hide();
           callback(available, available ?
             'Username available.' :
@@ -97,6 +97,7 @@ signup.delegate({
           callback(false, 'Username required.');
           return true;
         }
+        return false;
       });
     }()),
     transform: function (username) {
@@ -108,13 +109,13 @@ signup.delegate({
         return '@' + username;
       }
       return username;
-    },
+    }
   },
   password_one: {
     validate: function (password, callback) {
       var valid = validPass(password);
       callback(valid, valid ? 'Password ok.' : 'Password invalid.');
-    },
+    }
   },
   password_two: {
     validate: (function () {
@@ -131,8 +132,8 @@ signup.delegate({
           callback(true, 'Password match.');
         }
       };
-    }()),
-  },
+    }())
+  }
 });
 
 signup.on('submit', function (e) {

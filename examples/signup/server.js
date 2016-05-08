@@ -4,14 +4,14 @@ var bodyParser = require('body-parser');
 var app = express();
 
 var users = [
-  {username: '@batman', user: 'Bruce Wayne'},
-  {username: '@superman', user: 'Clark Kent'},
-  {username: '@jdoe', user: 'John Doe'},
+  { username: '@batman', user: 'Bruce Wayne' },
+  { username: '@superman', user: 'Clark Kent' },
+  { username: '@jdoe', user: 'John Doe' }
 ];
 
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/users', function (req, res) {
   res.json(users);
@@ -20,7 +20,7 @@ app.get('/users', function (req, res) {
 app.post('/users', function (req, res) {
   users.push({
     username: req.body.username,
-    user: req.body.first + ' ' + req.body.last,
+    user: req.body.first + ' ' + req.body.last
   });
   res.redirect(303, '/users');
 });

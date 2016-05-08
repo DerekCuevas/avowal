@@ -32,10 +32,13 @@
     "prepublish": "npm run lint && npm test"
   },
   "devDependencies": {
-    "eslint": "^1.8.0",
-    "eslint-config-airbnb": "^0.1.0",
-    "expect": "^1.13.0",
-    "gulp": "^3.9.0",
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^9.0.0",
+    "eslint-plugin-import": "^1.7.0",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-react": "^5.0.1",
+    "expect": "^1.20.1",
+    "gulp": "^3.9.1",
     "gulp-gh-pages": "^0.5.4"
   }
 }

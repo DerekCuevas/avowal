@@ -16,8 +16,8 @@
     on: 'input',
     templates: {
       success: document.querySelector('template.success').innerHTML,
-      error: document.querySelector('template.error').innerHTML,
-    },
+      error: document.querySelector('template.error').innerHTML
+    }
   });
 
   function validateSize(size, min, max, name) {
@@ -79,26 +79,26 @@
           return '#' + color;
         }
         return color;
-      },
+      }
     },
     radius: {
       validate: function (radius, callback) {
         var valid = validateSize(radius, 0, window.innerWidth / 2, 'radius');
         callback(valid.valid, valid.message);
-      },
+      }
     },
     x: {
       validate: function (x, callback) {
         var valid = validateSize(x, 0, window.innerWidth, 'x position');
         callback(valid.valid, valid.message);
-      },
+      }
     },
     y: {
       validate: function (y, callback) {
         var valid = validateSize(y, 0, window.innerHeight, 'y position');
         callback(valid.valid, valid.message);
-      },
-    },
+      }
+    }
   });
 
   function pixelize(size) {

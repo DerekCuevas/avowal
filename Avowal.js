@@ -80,7 +80,7 @@
     this._statusMessages = {};
     this._templates = {
       success: opts.templates.success || '<span>{{message}}</span>',
-      error: opts.templates.error || '<span>{{message}}</span>',
+      error: opts.templates.error || '<span>{{message}}</span>'
     };
 
     this._initEventDelegation(opts.on || 'input');
@@ -112,7 +112,7 @@
     input.classList.add(valid ? 'success' : 'error');
 
     status.innerHTML = render(template, {
-      message: message,
+      message: message
     });
   };
 
@@ -187,7 +187,7 @@
       if (!isFn(lifecycle.validate)) {
         fail(
           'missing or invalid "validate" method on input "' +
-          name + '", ' + 'in form "' + this.form.name + '".'
+          name + '", in form "' + this.form.name + '".'
         );
       }
 
