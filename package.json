@@ -26,7 +26,7 @@
     "Avowal.js"
   ],
   "scripts": {
-    "lint": "eslint Avowal.js examples/async examples/particle examples/signup",
+    "lint": "eslint .",
     "publish-examples": "gulp deploy-examples",
     "test": "mocha",
     "prepublish": "npm run lint && npm test"

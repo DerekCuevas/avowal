@@ -1,15 +1,14 @@
 {
-    "extends": "airbnb/legacy",
-    "rules": {
-        "indent": 0,
-        "func-names": 0,
-        "space-before-function-paren": 0,
-        "strict": 0,
-        "id-length": 0,
-    },
-    "globals": {
-        "Avowal": true,
-        "describe": true,
-        "it": true,
-    }
+  "extends": "airbnb/legacy",
+  "rules": {
+    "func-names": 0,
+    "space-before-function-paren": 0,
+    "strict": 0,
+    "id-length": 0
+  },
+  "globals": {
+    "Avowal": true,
+    "describe": true,
+    "it": true
+  }
 }
