@@ -21,7 +21,7 @@ Examples can be found in [/examples](/examples). There are three examples, an as
 Go here: [http://derekcuevas.github.io/avowal/](http://derekcuevas.github.io/avowal/)
 
 ## Setup
-Clone or 'npm install' this repository.
+`git clone` or `npm install` this repository.
 
 ```sh
 git clone https://github.com/DerekCuevas/avowal.git
@@ -39,6 +39,12 @@ var Avowal = require('avowal');
 
 ```html
 <script src="Avowal.js"></script>
+```
+
+**Or** use the latest version directly from [npmcdn](https://npmcdn.com)! (See examples published to gh-pages).
+
+```html
+<script src="https://npmcdn.com/avowal"></script>
 ```
 
 ## Using it
