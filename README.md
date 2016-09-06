@@ -41,10 +41,10 @@ var Avowal = require('avowal');
 <script src="Avowal.js"></script>
 ```
 
-**Or** use the latest version directly from [npmcdn](https://npmcdn.com)! (See examples published to gh-pages).
+**Or** use the latest version directly from [unpkg](https://unpkg.com)! (See examples published to gh-pages).
 
 ```html
-<script src="https://npmcdn.com/avowal"></script>
+<script src="https://unpkg.com/avowal"></script>
 ```
 
 ## Using it
